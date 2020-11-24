@@ -2,14 +2,19 @@ import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   container: {
-    backgroundColor: '#fff',
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingVertical: 15,
     borderRadius: 8,
     borderWidth: 1,
     width: '100%',
+    overflow: 'hidden',
+  },
+  button: {
+    paddingVertical: 15,
+    alignItems: 'center',
     flexDirection: 'row',
+    justifyContent: 'center',
+    // backgroundColor: '#fff',
+    // backgroundColor: 'pink',
+    width: '100%',
   },
   text: {
     fontSize: 16,

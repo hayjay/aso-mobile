@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { StyleSheet, View, Text, ScrollView, Pressable } from 'react-native';
+import React from 'react';
+import { View, Pressable } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview';
 import { Formik } from 'formik';
@@ -12,12 +12,6 @@ import CustomHeader from '../../components/CustomHeader';
 import { loginFormSchema } from '../../utils/FormValidationSchema';
 
 const LoginScreen = ({ navigation }) => {
-  const [inputValues, setInputValues] = useState({
-    email: '',
-    password: '',
-  });
-  const { email, password } = inputValues;
-
   return (
     <>
       <CustomHeader title="Login" />
@@ -64,10 +58,10 @@ const LoginScreen = ({ navigation }) => {
                   onChangeText={formProps.handleChange('email')}
                   value={formProps.values.email}
                   onBlur={formProps.handleBlur('email')}
+                  errorMessage={
+                    formProps.touched.email && formProps.errors.email
+                  }
                 />
-                <Text style={styles.error}>
-                  {formProps.touched.email && formProps.errors.email}
-                </Text>
                 <CustomInput
                   containerStyle={styles.inputBox}
                   placeholder="Password"
@@ -75,10 +69,10 @@ const LoginScreen = ({ navigation }) => {
                   onChangeText={formProps.handleChange('password')}
                   value={formProps.values.password}
                   onBlur={formProps.handleBlur('password')}
+                  errorMessage={
+                    formProps.touched.password && formProps.errors.password
+                  }
                 />
-                <Text style={styles.error}>
-                  {formProps.touched.password && formProps.errors.password}
-                </Text>
                 <CustomText style={styles.forgotPassword}>
                   Forgot password?
                 </CustomText>

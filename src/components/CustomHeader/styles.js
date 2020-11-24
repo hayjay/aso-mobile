@@ -15,6 +15,8 @@ export default StyleSheet.create({
     paddingLeft: spaces.appSpacing01,
     paddingRight: 20,
     marginRight: 10,
+    height: '100%',
+    alignSelf: 'center',
   },
   title: {
     color: '#fff',

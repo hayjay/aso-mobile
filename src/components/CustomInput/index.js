@@ -1,15 +1,20 @@
 import React from 'react';
 import { View, TextInput } from 'react-native';
+import CustomText from '../CustomText';
 import styles from './styles';
 
-const CustomInput = ({ containerStyle = {}, value, ...inputProps }) => {
+const CustomInput = ({
+  errorMessage,
+  containerStyle = {},
+  value,
+  ...inputProps
+}) => {
   return (
-    <View>
-      <TextInput
-        value={value}
-        style={[styles.input, containerStyle]}
-        {...inputProps}
-      />
+    <View style={containerStyle}>
+      <TextInput value={value} style={styles.input} {...inputProps} />
+      {errorMessage && (
+        <CustomText style={styles.errorMessage}>{errorMessage}</CustomText>
+      )}
     </View>
   );
 };
