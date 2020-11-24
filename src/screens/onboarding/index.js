@@ -128,7 +128,11 @@ const Onboarding = ({ navigation }) => {
                 text="Login"
                 onPress={() => navigation.navigate('Login')}
               />
-              <Button containerStyle={styles.signButton} text="Register" />
+              <Button
+                containerStyle={styles.signButton}
+                text="Register"
+                onPress={() => navigation.navigate('Register')}
+              />
             </View>
           </SafeAreaView>
         ) : (

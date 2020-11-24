@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import { StyleSheet, View, Text, ScrollView, Pressable } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview';
+import { Formik } from 'formik';
 
 import styles from './styles';
 import Button from '../../components/Button';
 import CustomInput from '../../components/CustomInput';
 import CustomText from '../../components/CustomText';
 import CustomHeader from '../../components/CustomHeader';
+import { loginFormSchema } from '../../utils/FormValidationSchema';
 
 const LoginScreen = ({ navigation }) => {
   const [inputValues, setInputValues] = useState({
@@ -39,20 +41,51 @@ const LoginScreen = ({ navigation }) => {
               containerStyle={styles.socialAuthButton}
             />
           </View>
-          <CustomInput
-            containerStyle={styles.inputBox}
-            placeholder="Email"
-            value={email}
-          />
-          <CustomInput
-            containerStyle={styles.inputBox}
-            placeholder="Password"
-            value={password}
-          />
-          <CustomText style={styles.forgotPassword}>
-            Forgot password?
-          </CustomText>
-          <Button text="Login" />
+          <Formik
+            initialValues={{
+              email: '',
+              password: '',
+            }}
+            validationSchema={loginFormSchema}
+            onSubmit={(values) => {
+              console.log('Entered values', values);
+              props.navigation.navigate('Home');
+            }}>
+            {(formProps) => (
+              <>
+                <CustomInput
+                  containerStyle={styles.inputBox}
+                  placeholder="Email"
+                  keyboardType="email-address"
+                  textContentType="emailAddress"
+                  autoCapitalize="none"
+                  autoCorrect={false}
+                  autoCompleteType="email"
+                  onChangeText={formProps.handleChange('email')}
+                  value={formProps.values.email}
+                  onBlur={formProps.handleBlur('email')}
+                />
+                <Text style={styles.error}>
+                  {formProps.touched.email && formProps.errors.email}
+                </Text>
+                <CustomInput
+                  containerStyle={styles.inputBox}
+                  placeholder="Password"
+                  secureTextEntry={true}
+                  onChangeText={formProps.handleChange('password')}
+                  value={formProps.values.password}
+                  onBlur={formProps.handleBlur('password')}
+                />
+                <Text style={styles.error}>
+                  {formProps.touched.password && formProps.errors.password}
+                </Text>
+                <CustomText style={styles.forgotPassword}>
+                  Forgot password?
+                </CustomText>
+                <Button text="Login" />
+              </>
+            )}
+          </Formik>
           <Pressable
             onPress={() => navigation.navigate('Register')}
             style={({ pressed }) => [
