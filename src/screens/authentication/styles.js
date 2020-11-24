@@ -5,6 +5,7 @@ export default StyleSheet.create({
   contentContainer: {
     paddingHorizontal: spaces.appSpacing01,
     paddingTop: 30,
+    paddingBottom: 30,
   },
   title: {
     fontSize: 20,
@@ -47,5 +48,8 @@ export default StyleSheet.create({
     fontSize: 30,
     marginLeft: 5,
     color: '#994D1F',
+  },
+  mainButton: {
+    marginTop: 20,
   },
 });

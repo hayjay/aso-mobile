@@ -76,7 +76,7 @@ const LoginScreen = ({ navigation }) => {
                 <CustomText style={styles.forgotPassword}>
                   Forgot password?
                 </CustomText>
-                <Button text="Login" />
+                <Button onPress={formProps.handleSubmit} text="Login" />
               </>
             )}
           </Formik>

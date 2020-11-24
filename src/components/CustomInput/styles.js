@@ -3,7 +3,7 @@ import { colors } from '../../style/variables';
 
 export default StyleSheet.create({
   input: {
-    borderBottomColor: '#bbb',
+    borderBottomColor: '#ccc',
     borderBottomWidth: 1,
     marginBottom: 5,
     paddingTop: 10,

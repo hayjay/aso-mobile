@@ -12,8 +12,6 @@ export default StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'center',
-    // backgroundColor: '#fff',
-    // backgroundColor: 'pink',
     width: '100%',
   },
   text: {
