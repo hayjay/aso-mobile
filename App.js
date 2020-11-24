@@ -14,6 +14,7 @@ export default function App() {
     'Roboto-Bold': require('./assets/fonts/Roboto-Bold.ttf'),
   });
 
+  // Add list of dependencies
   const isLoaded = fontsLoaded;
 
   if (!isLoaded) {
