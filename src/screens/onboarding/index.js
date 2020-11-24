@@ -19,7 +19,7 @@ import backgroundThree from '../../../assets/images/slide3background.jpeg';
 import backgroundFour from '../../../assets/images/slide4background.jpeg';
 import Button from '../../components/Button';
 
-const Onboarding = () => {
+const Onboarding = (props) => {
   const [swiperIndex, setSwiperIndex] = useState(0);
   const swiper = useRef(null);
 
@@ -124,8 +124,13 @@ const Onboarding = () => {
                 containerStyle={styles.signButton}
                 type="redOutline"
                 text="Login"
+                onPress={() => props.navigation.navigate('Login')}
               />
-              <Button containerStyle={styles.signButton} text="Register" />
+              <Button
+                containerStyle={styles.signButton}
+                text="Register"
+                onPress={() => props.navigation.navigate('Register')}
+              />
             </View>
           </SafeAreaView>
         ) : (
