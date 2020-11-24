@@ -18,8 +18,9 @@ import backgroundTwo from '../../../assets/images/slide2background.jpeg';
 import backgroundThree from '../../../assets/images/slide3background.jpeg';
 import backgroundFour from '../../../assets/images/slide4background.jpeg';
 import Button from '../../components/Button';
+import { StatusBar } from 'expo-status-bar';
 
-const Onboarding = () => {
+const Onboarding = ({ navigation }) => {
   const [swiperIndex, setSwiperIndex] = useState(0);
   const swiper = useRef(null);
 
@@ -47,6 +48,7 @@ const Onboarding = () => {
 
   return (
     <View style={styles.container}>
+      <StatusBar translucent={true} />
       <Swiper
         ref={swiper}
         loop={false}
@@ -124,6 +126,7 @@ const Onboarding = () => {
                 containerStyle={styles.signButton}
                 type="redOutline"
                 text="Login"
+                onPress={() => navigation.navigate('Login')}
               />
               <Button containerStyle={styles.signButton} text="Register" />
             </View>
