@@ -18,6 +18,17 @@ export default StyleSheet.create({
     height: '100%',
     alignSelf: 'center',
   },
+  homeButtonIcon: {
+    color: '#fff',
+    fontSize: 30,
+  },
+  homeButton: {
+    paddingRight: 20,
+    height: '100%',
+    paddingLeft: spaces.appSpacing01,
+    marginRight: 10,
+    justifyContent: 'center',
+  },
   title: {
     color: '#fff',
     fontSize: 20,
