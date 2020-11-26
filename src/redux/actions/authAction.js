@@ -1,4 +1,5 @@
-import { SUCCESS_RESPONSE_STATUS } from '../../utils/constants';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { login, register } from '../../api/auth';
 import {
   REGISTER_USER_SUCCESS,
   REGISTER_USER_FAILED,
@@ -6,70 +7,54 @@ import {
   LOGIN_USER_FAILED,
 } from '../types';
 
-const API_URL = 'http://159.65.233.192:3030';
-
-export const registerUser = (registerData) => {
+export const registerUser = (registerData) => async (dispatch) => {
   const { fullName, email, password, phoneNumber } = registerData;
-  return async (dispatch) => {
-    // logic to make a post to REGISTER the user
-    const result = await fetch(`${API_URL}/api/vst/register`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        name: fullName,
-        email,
-        password,
-        phoneNumber,
-      }),
-    });
+  const result = await register({
+    name: fullName,
+    email,
+    password,
+    phoneNumber,
+  });
 
-    const resultData = await result.json();
-
-    if (resultData.ResponseStatus === SUCCESS_RESPONSE_STATUS) {
-      dispatch({
-        type: REGISTER_USER_SUCCESS,
-        payload: resultData,
-      });
-    } else {
+  if (result.error) {
+    if (result.error.message === 'Input error') {
       dispatch({
         type: REGISTER_USER_FAILED,
       });
     }
+    return {
+      error: {
+        ...result.error,
+        message: 'This email has already been taken.',
+      },
+    };
+  }
 
-    return resultData;
-  };
+  dispatch({
+    type: REGISTER_USER_SUCCESS,
+    payload: result,
+  });
+  return result;
 };
 
-export const loginUser = (authData) => {
+export const loginUser = (authData) => async (dispatch) => {
   const { email, password } = authData;
-  return async (dispatch) => {
-    // logic to login user
-    const result = await fetch(`${API_URL}/api/vst/login`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        email,
-        password,
-      }),
+  const result = await login({
+    email,
+    password,
+  });
+  if (result.error) {
+    dispatch({
+      type: LOGIN_USER_FAILED,
     });
+    return result;
+  }
+  await AsyncStorage.setItem('access_token', result.token.access_token);
+  await AsyncStorage.setItem('user_info', JSON.stringify(result.userInfo));
+  dispatch({
+    type: LOGIN_USER_SUCCESS,
+    payload: result,
+  });
 
-    const resultData = await result.json();
-
-    if (resultData.token) {
-      dispatch({
-        type: LOGIN_USER_SUCCESS,
-        payload: resultData,
-      });
-    } else {
-      dispatch({
-        type: LOGIN_USER_FAILED,
-      });
-    }
-
-    return resultData;
-  };
+  return result;
 };

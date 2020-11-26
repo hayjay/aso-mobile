@@ -1,5 +1,5 @@
 import React from 'react';
-import { Platform, Pressable, View } from 'react-native';
+import { Platform, Pressable, View, ActivityIndicator } from 'react-native';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 
 import { colors } from '../../style/variables';
@@ -12,6 +12,7 @@ const Button = ({
   text,
   iconLeft,
   onPress = () => null,
+  isLoading = false,
 }) => {
   const typeStyle = {
     red: {
@@ -65,6 +66,7 @@ const Button = ({
         containerStyle,
       ]}>
       <Pressable
+        disabled={isLoading}
         android_ripple={rippleConfig}
         onPress={onPress}
         style={({ pressed }) => [
@@ -74,6 +76,7 @@ const Button = ({
             opacity: pressed && Platform.OS !== 'android' ? 0.7 : 1,
           },
         ]}>
+        {isLoading && <ActivityIndicator color="#fff" style={styles.loader} />}
         {(iconLeft && icons[iconLeft]) || iconLeft}
         <CustomText style={[styles.text, { color: textColor }]}>
           {text}

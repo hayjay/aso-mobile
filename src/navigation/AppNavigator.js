@@ -13,7 +13,6 @@ function stackNavigator() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Home"
         screenOptions={{
           headerShown: false,
           cardStyle: { backgroundColor: 'white' },

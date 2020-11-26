@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Pressable, Alert } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview';
@@ -13,10 +13,25 @@ import CustomHeader from '../../components/CustomHeader';
 import { registerFormSchema } from '../../utils/FormValidationSchema';
 
 import * as authAction from '../../redux/actions/authAction';
-import { SUCCESS_RESPONSE_STATUS } from '../../utils/constants';
 
 const RegisterScreen = ({ navigation }) => {
   const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = useState(false);
+
+  const processRegistration = async (values) => {
+    setIsLoading(true);
+    const result = await dispatch(authAction.registerUser(values));
+    setIsLoading(false);
+    if (result.error) {
+      return Alert.alert('Error!', result.error.message, [{ text: 'Ok' }]);
+    }
+    Alert.alert('Registration successful!', 'Login to continue', [
+      {
+        text: 'Ok',
+        onPress: () => navigation.navigate('Login'),
+      },
+    ]);
+  };
 
   return (
     <>
@@ -49,34 +64,7 @@ const RegisterScreen = ({ navigation }) => {
               phoneNumber: '',
             }}
             validationSchema={registerFormSchema}
-            onSubmit={(values) => {
-              dispatch(authAction.registerUser(values))
-                .then(async (result) => {
-                  if (result.ResponseStatus === SUCCESS_RESPONSE_STATUS) {
-                    Alert.alert(
-                      'Registration successful!',
-                      'Login to continue',
-                      [
-                        {
-                          text: 'Ok',
-                          onPress: () => navigation.navigate('Login'),
-                        },
-                      ],
-                    );
-                  } else {
-                    Alert.alert(
-                      'Warning!',
-                      'The email has already been taken',
-                      [{ text: 'Ok' }],
-                    );
-                  }
-                })
-                .catch((err) => {
-                  Alert.alert('Error!', 'An error occured. Try Again', [
-                    { text: 'Ok' },
-                  ]);
-                });
-            }}>
+            onSubmit={(values) => processRegistration(values)}>
             {(formProps) => (
               <>
                 <CustomInput
@@ -130,6 +118,7 @@ const RegisterScreen = ({ navigation }) => {
                   }
                 />
                 <Button
+                  isLoading={isLoading}
                   onPress={formProps.handleSubmit}
                   text="Register"
                   containerStyle={styles.mainButton}
