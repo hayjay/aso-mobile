@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { login, register } from '../../api/auth';
+import { setAuthToken } from '../../api/requestInstance';
 import {
   REGISTER_USER_SUCCESS,
   REGISTER_USER_FAILED,
@@ -49,6 +50,7 @@ export const loginUser = (authData) => async (dispatch) => {
     });
     return result;
   }
+  setAuthToken(result.token.access_token);
   await AsyncStorage.setItem('access_token', result.token.access_token);
   await AsyncStorage.setItem('user_info', JSON.stringify(result.userInfo));
   dispatch({
