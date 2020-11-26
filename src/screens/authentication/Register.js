@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { View, Pressable, Alert } from 'react-native';
+import { View, Pressable } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview';
 import { Formik } from 'formik';
 import { useDispatch } from 'react-redux';
+import Toast from 'react-native-toast-message';
 
 import styles from './styles';
 import Button from '../../components/Button';
@@ -23,14 +24,16 @@ const RegisterScreen = ({ navigation }) => {
     const result = await dispatch(authAction.registerUser(values));
     setIsLoading(false);
     if (result.error) {
-      return Alert.alert('Error!', result.error.message, [{ text: 'Ok' }]);
+      Toast.show({
+        type: 'error',
+        text1: result.error.message,
+      });
+      return;
     }
-    Alert.alert('Registration successful!', 'Login to continue', [
-      {
-        text: 'Ok',
-        onPress: () => navigation.navigate('Login'),
-      },
-    ]);
+    navigation.navigate('Login');
+    Toast.show({
+      text1: 'Registration successful! Login to continue',
+    });
   };
 
   return (

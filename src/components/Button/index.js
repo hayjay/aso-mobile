@@ -13,6 +13,7 @@ const Button = ({
   iconLeft,
   onPress = () => null,
   isLoading = false,
+  disabled,
 }) => {
   const typeStyle = {
     red: {
@@ -66,7 +67,7 @@ const Button = ({
         containerStyle,
       ]}>
       <Pressable
-        disabled={isLoading}
+        disabled={isLoading || disabled}
         android_ripple={rippleConfig}
         onPress={onPress}
         style={({ pressed }) => [
