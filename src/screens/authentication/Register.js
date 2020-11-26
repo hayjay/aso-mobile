@@ -1,8 +1,9 @@
 import React from 'react';
-import { View, Pressable } from 'react-native';
+import { View, Pressable, Alert } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview';
 import { Formik } from 'formik';
+import { useDispatch } from 'react-redux';
 
 import styles from './styles';
 import Button from '../../components/Button';
@@ -11,7 +12,12 @@ import CustomText from '../../components/CustomText';
 import CustomHeader from '../../components/CustomHeader';
 import { registerFormSchema } from '../../utils/FormValidationSchema';
 
+import * as authAction from '../../redux/actions/authAction';
+import { SUCCESS_RESPONSE_STATUS } from '../../utils/constants';
+
 const RegisterScreen = ({ navigation }) => {
+  const dispatch = useDispatch();
+
   return (
     <>
       <CustomHeader title="Register" />
@@ -44,8 +50,32 @@ const RegisterScreen = ({ navigation }) => {
             }}
             validationSchema={registerFormSchema}
             onSubmit={(values) => {
-              console.log('Entered values', values);
-              navigation.navigate('Home');
+              dispatch(authAction.registerUser(values))
+                .then(async (result) => {
+                  if (result.ResponseStatus === SUCCESS_RESPONSE_STATUS) {
+                    Alert.alert(
+                      'Registration successful!',
+                      'Login to continue',
+                      [
+                        {
+                          text: 'Ok',
+                          onPress: () => navigation.navigate('Login'),
+                        },
+                      ],
+                    );
+                  } else {
+                    Alert.alert(
+                      'Warning!',
+                      'The email has already been taken',
+                      [{ text: 'Ok' }],
+                    );
+                  }
+                })
+                .catch((err) => {
+                  Alert.alert('Error!', 'An error occured. Try Again', [
+                    { text: 'Ok' },
+                  ]);
+                });
             }}>
             {(formProps) => (
               <>
