@@ -25,4 +25,7 @@ export default StyleSheet.create({
   leftIcon: {
     marginRight: 10,
   },
+  loader: {
+    marginRight: 10,
+  },
 });

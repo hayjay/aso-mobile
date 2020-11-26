@@ -1,10 +1,10 @@
-import React from 'react';
-import { View, Pressable, Alert } from 'react-native';
+import React, { useState } from 'react';
+import { View, Pressable } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview';
 import { Formik } from 'formik';
 import { useDispatch } from 'react-redux';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import Toast from 'react-native-toast-message';
 
 import styles from './styles';
 import Button from '../../components/Button';
@@ -16,6 +16,21 @@ import * as authAction from '../../redux/actions/authAction';
 
 const LoginScreen = ({ navigation }) => {
   const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = useState(false);
+
+  const processLogin = async (values) => {
+    setIsLoading(true);
+    const result = await dispatch(authAction.loginUser(values));
+    setIsLoading(false);
+    if (result.error) {
+      Toast.show({
+        type: 'error',
+        text1: result.error.message,
+      });
+      return;
+    }
+    navigation.navigate('Home');
+  };
 
   return (
     <>
@@ -46,33 +61,7 @@ const LoginScreen = ({ navigation }) => {
               password: '',
             }}
             validationSchema={loginFormSchema}
-            onSubmit={(values) => {
-              dispatch(authAction.loginUser(values))
-                .then(async (result) => {
-                  if (result.token) {
-                    try {
-                      await AsyncStorage.setItem(
-                        'access_token',
-                        result.token.access_token,
-                      );
-                      navigation.navigate('Home');
-                    } catch (err) {
-                      Alert.alert('Error!', 'An error occured. Try Again', [
-                        { text: 'Ok' },
-                      ]);
-                    }
-                  } else {
-                    Alert.alert('Warning!', 'Incorrect email or password', [
-                      { text: 'Ok' },
-                    ]);
-                  }
-                })
-                .catch((err) => {
-                  Alert.alert('Error!', 'An error occured. Try Again', [
-                    { text: 'Ok' },
-                  ]);
-                });
-            }}>
+            onSubmit={(values) => processLogin(values)}>
             {(formProps) => (
               <>
                 <CustomInput
@@ -104,7 +93,11 @@ const LoginScreen = ({ navigation }) => {
                 <CustomText style={styles.forgotPassword}>
                   Forgot password?
                 </CustomText>
-                <Button onPress={formProps.handleSubmit} text="Login" />
+                <Button
+                  isLoading={isLoading}
+                  onPress={formProps.handleSubmit}
+                  text="Login"
+                />
               </>
             )}
           </Formik>

@@ -3,6 +3,7 @@ import { StyleSheet } from 'react-native';
 import { Provider } from 'react-redux';
 import { AppLoading } from 'expo';
 import { useFonts } from 'expo-font';
+import Toast from 'react-native-toast-message';
 
 import AppNavigator from './src/navigation/AppNavigator';
 import store from './src/redux/store';
@@ -24,6 +25,7 @@ export default function App() {
     return (
       <Provider store={store}>
         <AppNavigator />
+        <Toast ref={(ref) => Toast.setRef(ref)} />
       </Provider>
     );
   }
