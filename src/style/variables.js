@@ -18,7 +18,7 @@ export const spaces = {
   xl: 40,
   xxl: 64,
 
-  appSpacing01: (6 * screenWidth) / 100,
+  appSpacing01: (5 * screenWidth) / 100,
 
   letterMD: 0.4,
 };

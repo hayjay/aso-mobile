@@ -12,6 +12,7 @@ export default function App() {
     Roboto: require('./assets/fonts/Roboto-Regular.ttf'),
     'Roboto-Medium': require('./assets/fonts/Roboto-Medium.ttf'),
     'Roboto-Bold': require('./assets/fonts/Roboto-Bold.ttf'),
+    Icomoon: require('./assets/fonts/icomoon.ttf'),
   });
 
   // Add list of dependencies
