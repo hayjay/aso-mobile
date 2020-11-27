@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { StyleSheet, View, ScrollView } from 'react-native';
+import { StyleSheet, View, ScrollView, Alert } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 
 import CustomHeader from '../../components/CustomHeader';
@@ -121,6 +121,18 @@ const HomeScreen = ({ navigation }) => {
     },
   ];
 
+  const majorCities = [
+    {
+      title: 'Abuja',
+    },
+    {
+      title: 'Lagos',
+    },
+    {
+      title: 'Ibadan',
+    },
+  ];
+
   return (
     <View style={styles.container}>
       <CustomHeader headerLeft="menu" title="Home" />
@@ -130,18 +142,41 @@ const HomeScreen = ({ navigation }) => {
           itemWidth={330}
           horizontal
           title="Featured property"
+          actionButton={{
+            text: 'View All',
+            onPress: () => {},
+          }}
         />
         <ProductGroup
           data={propertiesForSale}
           itemWidth={170}
           horizontal
           title="Property for sale"
+          actionButton={{
+            text: 'View All',
+            onPress: () => {},
+          }}
         />
         <ProductGroup
           data={propertyForRent}
           itemWidth={170}
           horizontal
           title="Property for rent"
+          actionButton={{
+            text: 'View All',
+            onPress: () => {},
+          }}
+        />
+        <ProductGroup
+          data={majorCities}
+          itemWidth={170}
+          horizontal
+          type="city"
+          title="Browse property in major cities"
+          actionButton={{
+            text: 'View All',
+            onPress: () => {},
+          }}
         />
       </ScrollView>
     </View>
