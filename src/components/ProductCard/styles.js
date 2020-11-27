@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
   imageBackground: {
     width: '100%',
-    height: 180,
+    height: 170,
     borderRadius: 8,
     overflow: 'hidden',
     backgroundColor: '#d2d2d2',

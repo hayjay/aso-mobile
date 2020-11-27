@@ -12,6 +12,19 @@ export default StyleSheet.create({
     marginTop: 5,
     paddingLeft: spaces.appSpacing01,
   },
+  headingContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'stretch',
+  },
+  action: {
+    justifyContent: 'center',
+  },
+  actionText: {
+    color: 'grey',
+    fontFamily: 'Roboto-Medium',
+    paddingHorizontal: 10,
+  },
   featured: {
     marginRight: 10,
     marginBottom: 20,
