@@ -1,21 +1,18 @@
 import React, { useEffect } from 'react';
 import { StyleSheet, View, ScrollView } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useSelector, useDispatch } from 'react-redux';
 
 import CustomHeader from '../../components/CustomHeader';
 import ProductGroup from '../../components/ProductGroup';
 import * as statesAction from '../../redux/actions/statesAction';
 import * as propertyAction from '../../redux/actions/propertyAction';
+import * as profileAction from '../../redux/actions/profileAction';
 
 const HomeScreen = ({ navigation }) => {
   const dispatch = useDispatch();
 
   const loadProfile = async () => {
-    const token = await AsyncStorage.getItem('access_token');
-    if (!token) {
-      navigation.navigate('Login');
-    }
+    await dispatch(profileAction.getMyProfile());
   };
 
   const { states } = useSelector((state) => state.states.states);

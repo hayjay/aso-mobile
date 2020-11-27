@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getMyProfileAPI, getMyPropertiesAPI } from '../../api/profile';
 import {
   GET_MY_PROPERTIES_FAILED,
@@ -6,10 +7,13 @@ import {
   GET_PROFILE_SUCCESS,
 } from '../types';
 
-const DUMMY_USER_ID = 11;
+const getUserID = async () => {
+  const result = await AsyncStorage.getItem('user_info');
+  return JSON.parse(result).userID;
+};
 
 export const getMyProfile = () => async (dispatch) => {
-  const result = await getMyProfileAPI(DUMMY_USER_ID);
+  const result = await getMyProfileAPI(getUserID());
 
   if (result.error) {
     dispatch({
@@ -27,7 +31,7 @@ export const getMyProfile = () => async (dispatch) => {
 };
 
 export const getMyProperties = () => async (dispatch) => {
-  const result = await getMyPropertiesAPI(DUMMY_USER_ID);
+  const result = await getMyPropertiesAPI(getUserID());
 
   if (result.error) {
     dispatch({
