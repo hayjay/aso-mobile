@@ -1,0 +1,29 @@
+import React from 'react';
+import { Image, View } from 'react-native';
+import CustomHeader from '../../components/CustomHeader';
+import CustomText from '../../components/CustomText';
+import styles from './styles';
+
+const Profile = () => {
+  const imageSource = {
+    uri:
+      'https://s3-alpha-sig.figma.com/img/c769/4f4a/db9c6d2ffb011dab05204f453b9f8467?Expires=1607299200&Signature=UTk5lsimJsFrasvr-kuNoRcvdD9ytOYb-o3WWw~k7B2UbqKJTeMY4zVMVDK3ifDW~cntJhsGPNaelJiKVuxM7iL9HP6NsdjhNkbcjfpFry1epbdByQ-u5XlVCcI0P7diK3MjrBBiz1kiZ7b2aHSAR5eOx0XS3bN2fa15AAAqRdfv4dxS52zOq0e6Wby3I5sxRTjpCmLBQ2dexZ45ZXk~R77Fm1QjF04fvZO5-SMzju7cJ4BhHXfAmn~Qxgq4kIeVQJbHVekDmDl-TnzKqSvCJs23Ek3KX2XTIJc-KIbDIHoZX-vuo8ExYKT6Tx8JzsZIr9pGUQMleuZ3RkzM0CTEdA__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA',
+  };
+  return (
+    <View>
+      <CustomHeader title="Profile" />
+      <View>
+        <View style={styles.headTop}>
+          <CustomText style={styles.name}>Adebola Williams</CustomText>
+        </View>
+        <View style={styles.titleArea}>
+          <CustomText style={styles.profileTitle}>Real Estate Agent</CustomText>
+          <CustomText style={styles.profileSubTitle}>Lagos, Nigeria</CustomText>
+        </View>
+        <Image source={imageSource} />
+      </View>
+    </View>
+  );
+};
+
+export default Profile;

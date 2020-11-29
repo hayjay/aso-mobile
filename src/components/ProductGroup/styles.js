@@ -24,6 +24,7 @@ export default StyleSheet.create({
     color: 'grey',
     fontFamily: 'Roboto-Medium',
     paddingHorizontal: 10,
+    paddingRight: spaces.appSpacing01,
   },
   featured: {
     marginRight: 10,
