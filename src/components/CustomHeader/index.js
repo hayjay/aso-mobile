@@ -11,6 +11,7 @@ const CustomHeader = ({
   title,
   headerLeft = 'back',
   headerTitleAlign = 'left',
+  headerRightContents = [],
 }) => {
   const menuButton = () => {
     return (
@@ -23,6 +24,7 @@ const CustomHeader = ({
   const icons = {
     back: () => <BackButton containerStyle={styles.backButton} />,
     menu: menuButton,
+    more: <Ionicons name="md-more" style={styles.icon} />,
   };
 
   const headerLeftContent = icons[headerLeft];
@@ -34,6 +36,11 @@ const CustomHeader = ({
       <View style={styles.container}>
         {headerLeftContent()}
         <CustomText style={styles.title}>{title}</CustomText>
+        {headerRightContents.map(({ type, onPress }) => (
+          <Pressable onPress={onPress} style={styles.rightButton}>
+            {icons[type]}
+          </Pressable>
+        ))}
       </View>
     </View>
   );
