@@ -123,13 +123,13 @@ const HomeScreen = ({ navigation }) => {
 
   const majorCities = [
     {
-      title: 'Abuja',
+      name: 'Abuja',
     },
     {
-      title: 'Lagos',
+      name: 'Lagos',
     },
     {
-      title: 'Ibadan',
+      name: 'Ibadan',
     },
   ];
 
@@ -175,7 +175,9 @@ const HomeScreen = ({ navigation }) => {
           title="Browse property in major cities"
           actionButton={{
             text: 'View All',
-            onPress: () => {},
+            onPress: () => {
+              navigation.navigate('Cities');
+            },
           }}
         />
       </ScrollView>

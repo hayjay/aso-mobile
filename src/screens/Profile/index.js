@@ -15,17 +15,21 @@ const Profile = ({ navigation }) => {
 
   const menuItems = [
     {
+      id: 1,
       title: 'My Properties',
       onPress: () => navigation.navigate('Home'),
     },
     {
+      id: 2,
       title: 'My Wishlist',
     },
     {
+      id: 3,
       title: 'Manange Finance',
       onPress: () => navigation.navigate('Home'),
     },
     {
+      id: 4,
       title: 'My Profile',
       onPress: () => navigation.navigate('Home'),
     },

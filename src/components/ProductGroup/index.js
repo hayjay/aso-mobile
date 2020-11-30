@@ -47,10 +47,10 @@ const ProductGroup = ({
   };
 
   const cityList = () => {
-    return data.map(({ title }) => (
+    return data.map(({ name }) => (
       <CityThumbnail
         containerStyle={[styles.featured, { width: itemWidth }]}
-        text={title}
+        text={name}
       />
     ));
   };
