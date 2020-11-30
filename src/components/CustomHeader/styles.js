@@ -28,10 +28,24 @@ export default StyleSheet.create({
     paddingLeft: spaces.appSpacing01,
     marginRight: 10,
     justifyContent: 'center',
+    backgroundColor: 'pink',
   },
   title: {
     color: '#fff',
     fontSize: 20,
     fontFamily: 'Roboto-Medium',
+    flex: 1,
+  },
+  rightButton: {
+    // backgroundColor: 'green',
+    minWidth: 20,
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 50,
+  },
+  icon: {
+    color: 'white',
+    fontSize: 30,
   },
 });

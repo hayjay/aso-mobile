@@ -6,6 +6,7 @@ import Onboarding from '../screens/onboarding';
 import LoginScreen from '../screens/authentication/Login';
 import RegisterScreen from '../screens/authentication/Register';
 import HomeScreen from '../screens/home/Home';
+import ProfileScreen from '../screens/Profile';
 
 const Stack = createStackNavigator();
 
@@ -13,7 +14,7 @@ function stackNavigator() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Home"
+        initialRouteName="Profile"
         screenOptions={{
           headerShown: false,
           cardStyle: { backgroundColor: 'white' },
@@ -22,6 +23,7 @@ function stackNavigator() {
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Register" component={RegisterScreen} />
         <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Profile" component={ProfileScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
