@@ -11,8 +11,8 @@ import styles from './styles';
 const Accordion = ({ data = [] }) => {
   return (
     <View>
-      {data.map(({ title, onPress }) => (
-        <Pressable style={styles.titleContainer} onPress={onPress}>
+      {data.map(({ id, title, onPress }) => (
+        <Pressable key={id} style={styles.titleContainer} onPress={onPress}>
           <CustomText style={styles.title}>{title}</CustomText>
           <Ionicons name="ios-arrow-forward" style={styles.arrowIcon} />
         </Pressable>
