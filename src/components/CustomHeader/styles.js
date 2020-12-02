@@ -62,4 +62,22 @@ export default StyleSheet.create({
     fontFamily: 'Roboto',
     fontSize: 16,
   },
+  searchResultContainer: {
+    zIndex: 10,
+  },
+  searchResult: {
+    backgroundColor: '#fffffff0',
+    position: 'absolute',
+    width: '100%',
+    zIndex: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ddd',
+    shadowRadius: 7,
+    shadowOffset: { width: 0, height: 1 },
+    shadowColor: 'black',
+    shadowOpacity: 0.6,
+  },
+  searchLoader: {
+    marginVertical: 30,
+  },
 });

@@ -3,12 +3,12 @@ import { StyleSheet, Pressable } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
-const BackButton = ({ containerStyle, iconStyle }) => {
+const BackButton = ({ containerStyle, iconStyle, onPress }) => {
   const navigation = useNavigation();
   return (
     <Pressable
       style={[styles.container, containerStyle]}
-      onPress={() => navigation.goBack()}>
+      onPress={onPress || navigation.goBack}>
       <Ionicons style={[styles.icon, iconStyle]} name="md-arrow-back" />
     </Pressable>
   );

@@ -8,7 +8,8 @@ import PlusButton from '../../components/PlusButton';
 import Sort from '../../components/Sort';
 
 const MyProperties = () => {
-  const [isSortVisible, setIsSortVisible] = useState(true);
+  const [isSortVisible, setIsSortVisible] = useState(false);
+  const [searchInputValue, setSearchInputValue] = useState('');
   const properties = [
     {
       label: '2 days ago',
@@ -52,15 +53,22 @@ const MyProperties = () => {
     },
   ];
 
+  const onBackButtonPress = () => {
+    setSearchInputValue('');
+  };
+
   const sortItems = () => {};
 
   return (
     <View style={styles.container}>
       <CustomHeader
         searchBar
+        onBackButtonPress={!!searchInputValue ? onBackButtonPress : undefined}
         searchBarProps={{
-          onChangeText: () => {},
+          onChangeText: (text) => setSearchInputValue(text),
           placeholder: 'Search property',
+          value: searchInputValue,
+          isLoading: true,
         }}
         title="search bar"
         headerRightContents={[{ type: 'more', onPress: () => {} }]}
