@@ -12,10 +12,11 @@ export default StyleSheet.create({
     marginBottom: 15,
   },
   title: {
-    fontSize: 16,
+    fontSize: 18,
     fontFamily: 'Roboto-Medium',
     paddingTop: 10,
     paddingBottom: 15,
+    color: '#424445',
   },
   arrowIcon: {
     fontSize: 20,

@@ -28,8 +28,9 @@ const ProductGroup = ({
       flexDirection: 'row',
       flexWrap: 'wrap',
     };
+    const ListContainer = grid ? View : Fragment;
     return (
-      <View style={grid && gridStyle}>
+      <ListContainer {...(grid ? { style: gridStyle } : {})}>
         {data.length > 0 ? (
           data.map(
             ({
@@ -62,7 +63,7 @@ const ProductGroup = ({
         ) : (
           <Text>No Item Found!</Text>
         )}
-      </View>
+      </ListContainer>
     );
   };
 

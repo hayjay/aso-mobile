@@ -26,7 +26,7 @@ const Profile = ({ navigation }) => {
     {
       id: 3,
       title: 'Manange Finance',
-      onPress: () => navigation.navigate('Home'),
+      onPress: () => navigation.navigate('ManageFinance'),
     },
     {
       id: 4,

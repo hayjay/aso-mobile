@@ -28,7 +28,6 @@ export default StyleSheet.create({
     paddingLeft: spaces.appSpacing01,
     marginRight: 10,
     justifyContent: 'center',
-    backgroundColor: 'pink',
   },
   title: {
     color: '#fff',
