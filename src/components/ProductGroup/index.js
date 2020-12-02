@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Pressable, ScrollView, View } from 'react-native';
 
 import styles from './styles';
@@ -13,6 +13,7 @@ const ProductGroup = ({
   data = [],
   type = 'product',
   actionButton,
+  grid = false,
 }) => {
   const horizontalProps = {
     horizontal: true,
@@ -22,27 +23,37 @@ const ProductGroup = ({
   const extraScrollViewProps = horizontal ? horizontalProps : {};
 
   const productList = () => {
-    return data.map(
-      ({
-        metaItems,
-        label,
-        imageUrl,
-        price,
-        title: productTitle,
-        subTitle,
-        lowerTitle,
-      }) => (
-        <ProductCard
-          containerStyle={[styles.featured, { width: itemWidth }]}
-          label={label}
-          price={price}
-          metaItems={metaItems}
-          title={productTitle}
-          subTitle={subTitle}
-          lowerTitle={lowerTitle}
-          imageUrl={imageUrl}
-        />
-      ),
+    const gridStyle = {
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+    };
+    return (
+      <View style={grid && gridStyle}>
+        {data.map(
+          ({
+            metaItems,
+            label,
+            imageUrl,
+            price,
+            title: productTitle,
+            subTitle,
+            lowerTitle,
+          }) => (
+            <View style={grid && { width: '50%' }}>
+              <ProductCard
+                containerStyle={[styles.featured, { width: itemWidth }]}
+                label={label}
+                price={price}
+                metaItems={metaItems}
+                title={productTitle}
+                subTitle={subTitle}
+                lowerTitle={lowerTitle}
+                imageUrl={imageUrl}
+              />
+            </View>
+          ),
+        )}
+      </View>
     );
   };
 
@@ -70,6 +81,7 @@ const ProductGroup = ({
             <CustomText style={styles.actionText}>
               {actionButton.text}
             </CustomText>
+            {actionButton.icon && actionButton.icon}
           </Pressable>
         )}
       </View>

@@ -17,7 +17,7 @@ const Profile = ({ navigation }) => {
     {
       id: 1,
       title: 'My Properties',
-      onPress: () => navigation.navigate('Home'),
+      onPress: () => navigation.navigate('MyProperties'),
     },
     {
       id: 2,

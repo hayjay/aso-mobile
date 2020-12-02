@@ -19,16 +19,19 @@ export default StyleSheet.create({
   },
   action: {
     justifyContent: 'center',
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingRight: spaces.appSpacing01,
   },
   actionText: {
     color: 'grey',
     fontFamily: 'Roboto-Medium',
-    paddingHorizontal: 10,
-    paddingRight: spaces.appSpacing01,
+    fontSize: 16,
   },
   featured: {
     marginRight: 10,
     marginBottom: 20,
+    width: '100%',
   },
   scrollViewContainer: {
     paddingLeft: spaces.appSpacing01,
