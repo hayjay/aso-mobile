@@ -22,3 +22,14 @@ export const getMyPropertiesAPI = async (userID) => {
     return handleError(err);
   }
 };
+
+export const getMyWishlistAPI = async (userID) => {
+  try {
+    const result = await requestInstance.get(
+      `/api/vst/profile/myWishlist?userID=${userID}`,
+    );
+    return result.data;
+  } catch (err) {
+    return handleError(err);
+  }
+};

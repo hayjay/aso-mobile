@@ -3,11 +3,14 @@ import {
   GET_PROFILE_FAILED,
   GET_MY_PROPERTIES_SUCCESS,
   GET_MY_PROPERTIES_FAILED,
+  GET_MY_WISHLIST_SUCCESS,
+  GET_MY_WISHLIST_FAILED,
 } from '../types';
 
 const initialState = {
   myProfile: {},
   myProperties: [],
+  myWishlist: [],
   errors: {},
 };
 
@@ -34,6 +37,17 @@ export default function (state = initialState, action) {
       return {
         ...state,
         errors: true,
+      };
+    case GET_MY_WISHLIST_SUCCESS:
+      return {
+        ...state,
+        myWishlist: action.payload,
+        error: {},
+      };
+    case GET_MY_WISHLIST_FAILED:
+      return {
+        ...state,
+        error: true,
       };
   }
 

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { StyleSheet, View, ScrollView, Alert } from 'react-native';
+import { StyleSheet, View, ScrollView, Button } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 
 import CustomHeader from '../../components/CustomHeader';
@@ -43,6 +43,10 @@ const HomeScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <CustomHeader headerLeft="menu" title="Home" />
+      <Button
+        title="Link to Profile"
+        onPress={() => navigation.navigate('Profile')}
+      />
       <ScrollView>
         <ProductGroup
           data={featuredItems}
