@@ -9,7 +9,7 @@ import {
 
 const initialState = {
   featuredProperties: [],
-  newSaleProperties: [],
+  newSalesProperties: [],
   newRentsProperties: [],
   errors: {},
 };
@@ -30,7 +30,7 @@ export default function (state = initialState, action) {
     case GET_NEW_SALE_PROPERTIES_SUCCESS:
       return {
         ...state,
-        newSaleProperties: action.payload,
+        newSalesProperties: action.payload,
         errors: {},
       };
     case GET_NEW_SALE_PROPERTIES_FAILED:

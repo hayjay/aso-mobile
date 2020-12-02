@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { Pressable, ScrollView, View } from 'react-native';
+import { Pressable, ScrollView, View, Text } from 'react-native';
 
 import styles from './styles';
 import CustomText from '../CustomText';
@@ -13,6 +13,7 @@ const ProductGroup = ({
   data = [],
   type = 'product',
   actionButton,
+  navigation,
   grid = false,
 }) => {
   const horizontalProps = {
@@ -29,29 +30,37 @@ const ProductGroup = ({
     };
     return (
       <View style={grid && gridStyle}>
-        {data.map(
-          ({
-            metaItems,
-            label,
-            imageUrl,
-            price,
-            title: productTitle,
-            subTitle,
-            lowerTitle,
-          }) => (
-            <View style={grid && { width: '50%' }}>
-              <ProductCard
-                containerStyle={[styles.featured, { width: itemWidth }]}
-                label={label}
-                price={price}
-                metaItems={metaItems}
-                title={productTitle}
-                subTitle={subTitle}
-                lowerTitle={lowerTitle}
-                imageUrl={imageUrl}
-              />
-            </View>
-          ),
+        {data.length > 0 ? (
+          data.map(
+            ({
+              propertyID,
+              metaItems,
+              date_diff: label,
+              primary_image_link: imageUrl,
+              price,
+              currency,
+              name: productTitle,
+              address: subTitle,
+              lowerTitle,
+            }) => (
+              <View style={grid && { width: '50%' }}>
+                <ProductCard
+                  containerStyle={[styles.featured, { width: itemWidth }]}
+                  label={label}
+                  price={price}
+                  currency={currency}
+                  metaItems={metaItems}
+                  title={productTitle}
+                  subTitle={subTitle}
+                  lowerTitle={lowerTitle}
+                  imageUrl={imageUrl}
+                  propertyID={propertyID}
+                />
+              </View>
+            ),
+          )
+        ) : (
+          <Text>No Item Found!</Text>
         )}
       </View>
     );
