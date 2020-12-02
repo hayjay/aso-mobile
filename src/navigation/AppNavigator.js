@@ -10,6 +10,7 @@ import ProfileScreen from '../screens/Profile';
 import CitiesScreen from '../screens/home/CitiesScreen';
 import MyPropertiesScreen from '../screens/MyProperties';
 import PropertyDetailsScreen from '../screens/property/PropertyDetailsScreen';
+import ManageFinanceScreen from '../screens/ManageFinance';
 
 const Stack = createStackNavigator();
 
@@ -17,7 +18,7 @@ function stackNavigator() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        // initialRouteName="Profile"
+        initialRouteName="Profile"
         screenOptions={{
           headerShown: false,
           cardStyle: { backgroundColor: 'white' },
@@ -33,6 +34,7 @@ function stackNavigator() {
           name="PropertyDetails"
           component={PropertyDetailsScreen}
         />
+        <Stack.Screen name="ManageFinance" component={ManageFinanceScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
