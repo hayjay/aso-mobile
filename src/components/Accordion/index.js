@@ -8,9 +8,9 @@ import styles from './styles';
 /**
  * @todo: Refactor component to accept body
  */
-const Accordion = ({ data = [] }) => {
+const Accordion = ({ data = [], containerStyle }) => {
   return (
-    <View>
+    <View style={containerStyle}>
       {data.map(({ id, title, onPress }) => (
         <Pressable key={id} style={styles.titleContainer} onPress={onPress}>
           <CustomText style={styles.title}>{title}</CustomText>
