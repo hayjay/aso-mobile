@@ -17,7 +17,6 @@ function stackNavigator() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        // initialRouteName="Profile"
         screenOptions={{
           headerShown: false,
           cardStyle: { backgroundColor: 'white' },

@@ -1,8 +1,14 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { getMyProfileAPI, getMyPropertiesAPI } from '../../api/profile';
+import {
+  getMyProfileAPI,
+  getMyPropertiesAPI,
+  getMyWishlistAPI,
+} from '../../api/profile';
 import {
   GET_MY_PROPERTIES_FAILED,
   GET_MY_PROPERTIES_SUCCESS,
+  GET_MY_WISHLIST_FAILED,
+  GET_MY_WISHLIST_SUCCESS,
   GET_PROFILE_FAILED,
   GET_PROFILE_SUCCESS,
 } from '../types';
@@ -26,8 +32,6 @@ export const getMyProfile = () => async (dispatch) => {
     type: GET_PROFILE_SUCCESS,
     payload: result,
   });
-
-  return result;
 };
 
 export const getMyProperties = () => async (dispatch) => {
@@ -44,6 +48,20 @@ export const getMyProperties = () => async (dispatch) => {
     type: GET_MY_PROPERTIES_SUCCESS,
     payload: result,
   });
+};
 
-  return result;
+export const getMyWishlist = () => async (dispatch) => {
+  const result = await getMyWishlistAPI(getUserID);
+
+  if (result.error) {
+    dispatch({
+      type: GET_MY_WISHLIST_FAILED,
+    });
+    return result;
+  }
+
+  dispatch({
+    type: GET_MY_WISHLIST_SUCCESS,
+    payload: result,
+  });
 };
