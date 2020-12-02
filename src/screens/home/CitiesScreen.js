@@ -19,7 +19,6 @@ const majorCities = [
 
 const CitiesScreen = () => {
   const { states } = useSelector((state) => state.states.states);
-  console.log('states', states);
   return (
     <View style={styles.container}>
       <CustomHeader headerLeft="menu" title="Home" />

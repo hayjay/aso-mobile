@@ -2,7 +2,7 @@ import {
   getFeaturedPropertiesAPI,
   getNewPropertiesAPI,
 } from '../../api/property';
-import { RENTS, SALE } from '../../utils/constants';
+import { RENTS, SALES } from '../../utils/constants';
 import {
   GET_FEATURED_PROPERTIES_FAILED,
   GET_FEATURED_PROPERTIES_SUCCESS,
@@ -26,12 +26,10 @@ export const getFeaturedProperties = () => async (dispatch) => {
     type: GET_FEATURED_PROPERTIES_SUCCESS,
     payload: result,
   });
-
-  return result;
 };
 
 export const getNewSaleProperties = () => async (dispatch) => {
-  const result = await getNewPropertiesAPI(SALE);
+  const result = await getNewPropertiesAPI(SALES);
 
   if (result.error) {
     dispatch({
@@ -44,8 +42,6 @@ export const getNewSaleProperties = () => async (dispatch) => {
     type: GET_NEW_SALE_PROPERTIES_SUCCESS,
     payload: result,
   });
-
-  return result;
 };
 
 export const getNewRentsProperties = () => async (dispatch) => {
@@ -62,6 +58,4 @@ export const getNewRentsProperties = () => async (dispatch) => {
     type: GET_NEW_RENTS_PROPERTIES_SUCCESS,
     payload: result,
   });
-
-  return result;
 };
