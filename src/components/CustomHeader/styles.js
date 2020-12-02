@@ -37,7 +37,6 @@ export default StyleSheet.create({
     flex: 1,
   },
   rightButton: {
-    // backgroundColor: 'green',
     minWidth: 20,
     height: '100%',
     justifyContent: 'center',
@@ -47,5 +46,20 @@ export default StyleSheet.create({
   icon: {
     color: 'white',
     fontSize: 30,
+  },
+  searchContainer: {
+    backgroundColor: '#fff',
+    flex: 1,
+    marginHorizontal: spaces.appSpacing01,
+    height: 45,
+    borderRadius: 6,
+    flexDirection: 'row',
+    alignSelf: 'flex-start',
+    marginTop: 3,
+  },
+  searchInput: {
+    flex: 1,
+    fontFamily: 'Roboto',
+    fontSize: 16,
   },
 });
