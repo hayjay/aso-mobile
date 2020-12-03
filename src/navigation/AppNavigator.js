@@ -12,6 +12,7 @@ import MyPropertiesScreen from '../screens/MyProperties';
 import PropertyDetailsScreen from '../screens/property/PropertyDetailsScreen';
 import ManageFinanceScreen from '../screens/ManageFinance';
 import MyWishlist from '../screens/MyWishlist';
+import ForgotPassword from '../screens/authentication/ForgotPassword';
 
 const Stack = createStackNavigator();
 
@@ -19,6 +20,7 @@ function stackNavigator() {
   return (
     <NavigationContainer>
       <Stack.Navigator
+        initialRouteName="ForgotPassword"
         screenOptions={{
           headerShown: false,
           cardStyle: { backgroundColor: 'white' },
@@ -36,6 +38,7 @@ function stackNavigator() {
         />
         <Stack.Screen name="ManageFinance" component={ManageFinanceScreen} />
         <Stack.Screen name="MyWishlist" component={MyWishlist} />
+        <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
       </Stack.Navigator>
     </NavigationContainer>
   );
