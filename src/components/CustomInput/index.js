@@ -11,7 +11,12 @@ const CustomInput = ({
 }) => {
   return (
     <View style={containerStyle}>
-      <TextInput value={value} style={styles.input} {...inputProps} />
+      <TextInput
+        placeholderTextColor="#aaa"
+        value={value}
+        style={styles.input}
+        {...inputProps}
+      />
       {errorMessage && (
         <CustomText style={styles.errorMessage}>{errorMessage}</CustomText>
       )}

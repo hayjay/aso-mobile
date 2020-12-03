@@ -47,6 +47,10 @@ const HomeScreen = ({ navigation }) => {
         title="Link to Profile"
         onPress={() => navigation.navigate('Profile')}
       />
+      <Button
+        title="Link to Login"
+        onPress={() => navigation.navigate('Login')}
+      />
       <ScrollView>
         <ProductGroup
           data={featuredItems}

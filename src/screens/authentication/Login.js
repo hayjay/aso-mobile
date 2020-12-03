@@ -90,9 +90,12 @@ const LoginScreen = ({ navigation }) => {
                     formProps.touched.password && formProps.errors.password
                   }
                 />
-                <CustomText style={styles.forgotPassword}>
-                  Forgot password?
-                </CustomText>
+                <Pressable
+                  onPress={() => navigation.navigate('ForgotPassword')}>
+                  <CustomText style={styles.forgotPassword}>
+                    Forgot password?
+                  </CustomText>
+                </Pressable>
                 <Button
                   isLoading={isLoading}
                   onPress={formProps.handleSubmit}
