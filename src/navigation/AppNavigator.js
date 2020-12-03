@@ -11,6 +11,7 @@ import CitiesScreen from '../screens/home/CitiesScreen';
 import MyPropertiesScreen from '../screens/MyProperties';
 import PropertyDetailsScreen from '../screens/property/PropertyDetailsScreen';
 import ManageFinanceScreen from '../screens/ManageFinance';
+import MyWishlist from '../screens/MyWishlist';
 
 const Stack = createStackNavigator();
 
@@ -34,6 +35,7 @@ function stackNavigator() {
           component={PropertyDetailsScreen}
         />
         <Stack.Screen name="ManageFinance" component={ManageFinanceScreen} />
+        <Stack.Screen name="MyWishlist" component={MyWishlist} />
       </Stack.Navigator>
     </NavigationContainer>
   );

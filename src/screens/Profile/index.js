@@ -22,6 +22,7 @@ const Profile = ({ navigation }) => {
     {
       id: 2,
       title: 'My Wishlist',
+      onPress: () => navigation.navigate('MyWishlist'),
     },
     {
       id: 3,

@@ -44,7 +44,7 @@ const ProductGroup = ({
               address: subTitle,
               lowerTitle,
             }) => (
-              <View style={grid && { width: '50%' }}>
+              <View style={grid && { width: '50%' }} key={propertyID}>
                 <ProductCard
                   containerStyle={[styles.featured, { width: itemWidth }]}
                   label={label}
