@@ -9,15 +9,15 @@ import PlusButton from '../../components/PlusButton';
 import Sort from '../../components/Sort';
 import * as profileActions from '../../redux/actions/profileAction';
 
-const MyProperties = () => {
+const MyWishlist = () => {
   const dispatch = useDispatch();
   const [isSortVisible, setIsSortVisible] = useState(false);
   const [searchInputValue, setSearchInputValue] = useState('');
-  const { myProperties } = useSelector((state) => state.profile.myProperties);
-  const properties = myProperties ? myProperties.data : [];
+  const { myWishlist } = useSelector((state) => state.profile.myWishlist);
+  const properties = myWishlist ? myProperties.data : [];
 
   useEffect(() => {
-    dispatch(profileActions.getMyProperties());
+    dispatch(profileActions.getMyWishlist());
   }, [dispatch]);
 
   const onBackButtonPress = () => {
@@ -44,7 +44,7 @@ const MyProperties = () => {
       <ProductGroup
         grid
         data={properties}
-        title="My Properties"
+        title="My Wishlist"
         actionButton={{
           text: 'Sort by',
           onPress: () => setIsSortVisible(true),
@@ -60,4 +60,4 @@ const MyProperties = () => {
   );
 };
 
-export default MyProperties;
+export default MyWishlist;
