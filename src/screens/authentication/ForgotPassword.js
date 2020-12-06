@@ -16,7 +16,7 @@ import emailImage from '../../../assets/images/email-sent.png';
 const ForgotPassword = () => {
   const [otp, setOtp] = useState('');
   const [isCompletionModalVisible, setIsCompletionModalVisible] = useState(
-    true,
+    false,
   );
   const [swiperIndex, setSwiperIndex] = useState(0);
   const swiper = useRef(null);

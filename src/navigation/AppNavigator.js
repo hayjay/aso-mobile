@@ -20,7 +20,7 @@ function stackNavigator() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="ForgotPassword"
+        // initialRouteName="ForgotPassword"
         screenOptions={{
           headerShown: false,
           cardStyle: { backgroundColor: 'white' },

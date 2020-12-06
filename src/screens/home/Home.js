@@ -7,7 +7,11 @@ import ProductGroup from '../../components/ProductGroup';
 import * as statesAction from '../../redux/actions/statesAction';
 import * as propertyAction from '../../redux/actions/propertyAction';
 import * as profileAction from '../../redux/actions/profileAction';
-import { majorCities } from '../../utils/constants';
+import {
+  HOME_RENT_ITEM,
+  HOME_SALE_ITEM,
+  majorCities,
+} from '../../utils/constants';
 
 const HomeScreen = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -66,6 +70,7 @@ const HomeScreen = ({ navigation }) => {
         <ProductGroup
           data={propertiesForSale}
           navigation={navigation}
+          itemCategory={HOME_SALE_ITEM}
           itemWidth={170}
           horizontal
           title="Property for sale"
@@ -77,6 +82,7 @@ const HomeScreen = ({ navigation }) => {
         <ProductGroup
           data={propertiesForRent}
           navigation={navigation}
+          itemCategory={HOME_RENT_ITEM}
           itemWidth={170}
           horizontal
           title="Property for rent"
