@@ -21,7 +21,7 @@ const CitiesScreen = () => {
   const { states } = useSelector((state) => state.states.states);
   return (
     <View style={styles.container}>
-      <CustomHeader headerLeft="menu" title="Home" />
+      <CustomHeader title="Major Cities" />
       <ScrollView>
         <ProductGroup
           data={states}
