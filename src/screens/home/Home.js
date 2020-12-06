@@ -40,7 +40,7 @@ const HomeScreen = ({ navigation }) => {
     loadProfile();
     dispatch(statesAction.getNigeriaStates());
     dispatch(propertyAction.getFeaturedProperties());
-    dispatch(propertyAction.getNewSaleProperties());
+    dispatch(propertyAction.getNewSalesProperties());
     dispatch(propertyAction.getNewRentsProperties());
   }, [dispatch]);
 
@@ -76,7 +76,9 @@ const HomeScreen = ({ navigation }) => {
           title="Property for sale"
           actionButton={{
             text: 'View All',
-            onPress: () => {},
+            onPress: () => {
+              navigation.navigate('Buy');
+            },
           }}
         />
         <ProductGroup
@@ -88,7 +90,9 @@ const HomeScreen = ({ navigation }) => {
           title="Property for rent"
           actionButton={{
             text: 'View All',
-            onPress: () => {},
+            onPress: () => {
+              navigation.navigate('Rent');
+            },
           }}
         />
         <ProductGroup

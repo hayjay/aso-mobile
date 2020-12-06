@@ -13,6 +13,9 @@ import PropertyDetailsScreen from '../screens/property/PropertyDetailsScreen';
 import ManageFinanceScreen from '../screens/ManageFinance';
 import MyWishlist from '../screens/MyWishlist';
 import ForgotPassword from '../screens/authentication/ForgotPassword';
+import BuyScreen from '../screens/home/BuyScreen';
+import RentScreen from '../screens/home/RentScreen';
+import FeaturedScreen from '../screens/home/FeaturedScreen';
 
 const Stack = createStackNavigator();
 
@@ -39,6 +42,9 @@ function stackNavigator() {
         <Stack.Screen name="ManageFinance" component={ManageFinanceScreen} />
         <Stack.Screen name="MyWishlist" component={MyWishlist} />
         <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
+        <Stack.Screen name="Buy" component={BuyScreen} />
+        <Stack.Screen name="Rent" component={RentScreen} />
+        <Stack.Screen name="Featured" component={FeaturedScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

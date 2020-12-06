@@ -10,6 +10,10 @@ import {
   GET_NEW_SALE_PROPERTIES_FAILED,
   GET_NEW_RENTS_PROPERTIES_FAILED,
   GET_NEW_RENTS_PROPERTIES_SUCCESS,
+  GET_FEATURED_PROPERTIES_SALES_SUCCESS,
+  GET_FEATURED_PROPERTIES_SALES_FAILED,
+  GET_FEATURED_PROPERTIES_RENTS_SUCCESS,
+  GET_FEATURED_PROPERTIES_RENTS_FAILED,
 } from '../types';
 
 export const getFeaturedProperties = () => async (dispatch) => {
@@ -28,7 +32,39 @@ export const getFeaturedProperties = () => async (dispatch) => {
   });
 };
 
-export const getNewSaleProperties = () => async (dispatch) => {
+export const getFeaturedPropertiesSales = () => async (dispatch) => {
+  const result = await getFeaturedPropertiesAPI(SALES);
+
+  if (result.error) {
+    dispatch({
+      type: GET_FEATURED_PROPERTIES_SALES_FAILED,
+    });
+    return result;
+  }
+
+  dispatch({
+    type: GET_FEATURED_PROPERTIES_SALES_SUCCESS,
+    payload: result,
+  });
+};
+
+export const getFeaturedPropertiesRents = () => async (dispatch) => {
+  const result = await getFeaturedPropertiesAPI(RENTS);
+
+  if (result.error) {
+    dispatch({
+      type: GET_FEATURED_PROPERTIES_RENTS_FAILED,
+    });
+    return result;
+  }
+
+  dispatch({
+    type: GET_FEATURED_PROPERTIES_RENTS_SUCCESS,
+    payload: result,
+  });
+};
+
+export const getNewSalesProperties = () => async (dispatch) => {
   const result = await getNewPropertiesAPI(SALES);
 
   if (result.error) {

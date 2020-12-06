@@ -1,10 +1,10 @@
 import handleError from './errorHandler';
 import requestInstance from './requestInstance';
 
-export const getFeaturedPropertiesAPI = async () => {
+export const getFeaturedPropertiesAPI = async (type = null) => {
   try {
     const result = await requestInstance.get(
-      '/api/vst/params/getFeaturedProperty',
+      `/api/vst/params/getFeaturedProperty?type=${type}`,
     );
     return result.data;
   } catch (err) {
