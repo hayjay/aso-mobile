@@ -23,7 +23,12 @@ const CitiesScreen = () => {
     <View style={styles.container}>
       <CustomHeader headerLeft="menu" title="Home" />
       <ScrollView>
-        <ProductGroup data={states} itemWidth={170} horizontal type="city" />
+        <ProductGroup
+          data={states}
+          itemWidth={170}
+          horizontal={false}
+          type="city"
+        />
       </ScrollView>
     </View>
   );

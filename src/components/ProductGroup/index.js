@@ -13,7 +13,7 @@ const ProductGroup = ({
   data = [],
   type = 'product',
   actionButton,
-  navigation,
+  itemCategory,
   grid = false,
 }) => {
   const horizontalProps = {
@@ -35,7 +35,6 @@ const ProductGroup = ({
           data.map(
             ({
               propertyID,
-              metaItems,
               date_diff: label,
               primary_image_link: imageUrl,
               price,
@@ -43,6 +42,9 @@ const ProductGroup = ({
               name: productTitle,
               address: subTitle,
               lowerTitle,
+              no_bedroom,
+              no_cars,
+              no_bathroom,
             }) => (
               <View style={grid && { width: '50%' }} key={propertyID}>
                 <ProductCard
@@ -50,11 +52,14 @@ const ProductGroup = ({
                   label={label}
                   price={price}
                   currency={currency}
-                  metaItems={metaItems}
                   title={productTitle}
                   subTitle={subTitle}
                   lowerTitle={lowerTitle}
                   imageUrl={imageUrl}
+                  numberBedrooms={no_bedroom}
+                  numberBathrooms={no_bathroom}
+                  numberCars={no_cars}
+                  itemCategory={itemCategory}
                   propertyID={propertyID}
                 />
               </View>
@@ -68,10 +73,11 @@ const ProductGroup = ({
   };
 
   const cityList = () => {
-    return data.map(({ name }) => (
+    return data.map(({ name, propertyID }) => (
       <CityThumbnail
         containerStyle={[styles.featured, { width: itemWidth }]}
         text={name}
+        key={propertyID}
       />
     ));
   };
