@@ -57,15 +57,12 @@ const ForgotPassword = () => {
           showsPagination={false}>
           <View style={styles.contentContainer}>
             <CustomText style={styles.subTitle}>
-              Please enter your email address or phone number to receive
-              identification code
+              Please enter your email address to receive identification code
             </CustomText>
             <CustomInput
               containerStyle={styles.topSpacing}
               placeholder="Email Address"
             />
-            <CustomText style={styles.orDivider}>Or</CustomText>
-            <CustomInput placeholder="Phone Number" />
             <Button
               onPress={handleStep1}
               containerStyle={styles.continueButton}
