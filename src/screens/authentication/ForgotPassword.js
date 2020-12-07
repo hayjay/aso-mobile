@@ -13,7 +13,7 @@ import CustomText from '../../components/CustomText';
 import CodeInput from '../../components/CodeInput';
 import emailImage from '../../../assets/images/email-sent.png';
 
-const ForgotPassword = () => {
+const ForgotPassword = ({ navigation }) => {
   const [otp, setOtp] = useState('');
   const [isCompletionModalVisible, setIsCompletionModalVisible] = useState(
     false,
@@ -39,6 +39,12 @@ const ForgotPassword = () => {
 
   const changePassword = () => {
     setIsCompletionModalVisible(true);
+  };
+
+  const endProcess = () => {
+    scrollBy(-3);
+    setIsCompletionModalVisible(false);
+    navigation.navigate('Login');
   };
 
   return (
@@ -116,9 +122,7 @@ const ForgotPassword = () => {
         isVisible={isCompletionModalVisible}>
         <StatusBar style="dark" />
         <View style={styles.completionModalContent}>
-          <Pressable
-            style={styles.closeButton}
-            onPress={() => setIsCompletionModalVisible(false)}>
+          <Pressable style={styles.closeButton} onPress={endProcess}>
             <Ionicons name="md-close" style={styles.closeIcon} />
           </Pressable>
           <Image style={styles.completionImage} source={emailImage} />

@@ -22,5 +22,8 @@ export default StyleSheet.create({
     color: '#fff',
     fontSize: 16,
     fontFamily: 'Roboto-Medium',
+    paddingVertical: 10,
+    paddingHorizontal: 10,
+    textAlign: 'center',
   },
 });
