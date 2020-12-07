@@ -35,7 +35,9 @@ const LoginScreen = ({ navigation }) => {
   return (
     <>
       <CustomHeader title="Login" />
-      <KeyboardAwareScrollView automaticallyAdjustContentInsets={false}>
+      <KeyboardAwareScrollView
+        keyboardShouldPersistTaps="handled"
+        automaticallyAdjustContentInsets={false}>
         <View style={styles.contentContainer}>
           <CustomText style={styles.title}>Welcome Back,</CustomText>
           <CustomText style={styles.subTitle}>
@@ -89,6 +91,7 @@ const LoginScreen = ({ navigation }) => {
                   errorMessage={
                     formProps.touched.password && formProps.errors.password
                   }
+                  toggleVisibility
                 />
                 <Pressable
                   onPress={() => navigation.navigate('ForgotPassword')}>

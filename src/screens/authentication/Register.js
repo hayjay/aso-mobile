@@ -39,7 +39,9 @@ const RegisterScreen = ({ navigation }) => {
   return (
     <>
       <CustomHeader title="Register" />
-      <KeyboardAwareScrollView automaticallyAdjustContentInsets={false}>
+      <KeyboardAwareScrollView
+        keyboardShouldPersistTaps="handled"
+        automaticallyAdjustContentInsets={false}>
         <View style={styles.contentContainer}>
           <CustomText style={styles.title}>Hello,</CustomText>
           <CustomText style={styles.subTitle}>
@@ -105,6 +107,7 @@ const RegisterScreen = ({ navigation }) => {
                   errorMessage={
                     formProps.touched.password && formProps.errors.password
                   }
+                  toggleVisibility
                 />
                 <CustomInput
                   containerStyle={styles.inputBox}

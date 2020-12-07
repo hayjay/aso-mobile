@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { Ionicons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 
 import styles from './styles';
 import BackButton from '../BackButton';
@@ -22,10 +23,12 @@ const CustomHeader = ({
   searchBarProps,
   onBackButtonPress,
 }) => {
+  const navigation = useNavigation();
+
   const iconsColor = searchBar ? 'black' : 'white';
   const menuButton = () => {
     return (
-      <Pressable style={styles.homeButton}>
+      <Pressable style={styles.homeButton} onPress={navigation.openDrawer}>
         <Ionicons name="md-menu" style={styles.homeButtonIcon} />
       </Pressable>
     );
