@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, ScrollView, Button } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -12,9 +12,14 @@ import {
   HOME_SALE_ITEM,
   majorCities,
 } from '../../utils/constants';
+import Filter from '../../components/Filter';
+import CustomInput from '../../components/CustomInput';
+import { spaces } from '../../style/variables';
+import FilterButton from '../../components/FilterButton';
 
 const HomeScreen = ({ navigation }) => {
   const dispatch = useDispatch();
+  const [isFilterVisible, setIsFilterVisible] = useState(false);
 
   const loadProfile = async () => {
     await dispatch(profileAction.getMyProfile());
@@ -47,14 +52,14 @@ const HomeScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <CustomHeader headerLeft="menu" title="Home" />
-      <Button
-        title="Link to Profile"
-        onPress={() => navigation.navigate('Profile')}
-      />
-      <Button
-        title="Link to Login"
-        onPress={() => navigation.navigate('Login')}
-      />
+      <View style={styles.searchArea}>
+        <CustomInput
+          containerStyle={{ flex: 1, marginRight: 10 }}
+          type="search"
+          placeholder="Search property"
+        />
+        <FilterButton onPress={() => setIsFilterVisible(true)} />
+      </View>
       <ScrollView>
         <ProductGroup
           data={featuredItems}
@@ -110,6 +115,10 @@ const HomeScreen = ({ navigation }) => {
           }}
         />
       </ScrollView>
+      <Filter
+        isVisible={isFilterVisible}
+        closeModal={() => setIsFilterVisible(false)}
+      />
     </View>
   );
 };
@@ -117,6 +126,11 @@ const HomeScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  searchArea: {
+    paddingHorizontal: spaces.appSpacing01,
+    marginTop: 10,
+    flexDirection: 'row',
   },
 });
 
