@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, TextInput, Pressable } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons, Feather } from '@expo/vector-icons';
 
 import CustomText from '../CustomText';
 import styles from './styles';
@@ -10,14 +10,30 @@ const CustomInput = ({
   containerStyle = {},
   value,
   toggleVisibility,
+  type,
   ...inputProps
 }) => {
   const [secureTextEntry, setSecureTextEntry] = useState(
     toggleVisibility || secureTextEntry,
   );
+
+  const iconLeft = type === 'search' && (
+    <Feather name="search" size={24} color="#aaa" style={styles.searchIcon} />
+  );
+  const typeToStyles = {
+    search: {
+      borderWidth: 1,
+      borderRadius: 6,
+      borderColor: '#ccc',
+      paddingLeft: 10,
+    },
+  };
+  const typeStyle = typeToStyles[type] || {};
+
   return (
     <View style={containerStyle}>
-      <View style={styles.inputContainer}>
+      <View style={[styles.inputContainer, typeStyle]}>
+        {iconLeft}
         <TextInput
           placeholderTextColor="#aaa"
           value={value}

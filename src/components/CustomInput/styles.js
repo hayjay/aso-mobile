@@ -26,4 +26,7 @@ export default StyleSheet.create({
     color: colors.red,
     letterSpacing: 0.4,
   },
+  searchIcon: {
+    marginRight: 5,
+  },
 });
