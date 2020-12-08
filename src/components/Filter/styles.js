@@ -5,6 +5,10 @@ export default StyleSheet.create({
   modal: {
     margin: 0,
   },
+  scrollView: {
+    backgroundColor: '#fff',
+    minHeight: '100%',
+  },
   header: {
     backgroundColor: '#131516',
     height: 54,
@@ -12,7 +16,6 @@ export default StyleSheet.create({
     flexDirection: 'row',
   },
   container: {
-    backgroundColor: '#fff',
     flex: 1,
     padding: 20,
   },
