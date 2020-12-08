@@ -16,3 +16,7 @@ export const registerFormSchema = yup.object({
     .matches(phoneRegex, 'Invalid phone number')
     .required('Phone is required'),
 });
+
+export const emailFormSchema = yup.object({
+  email: yup.string().email().required(),
+});

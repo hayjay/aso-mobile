@@ -13,7 +13,7 @@ import {
   GET_PROFILE_SUCCESS,
 } from '../types';
 
-const getUserID = async () => {
+export const getUserID = async () => {
   const result = await AsyncStorage.getItem('user_info');
   return JSON.parse(result).userID;
 };

@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
+  changePasswordAPI,
   login,
   passwordResetCommitAPI,
   register,
@@ -16,6 +17,7 @@ import {
   RESET_PASSWORD_COMMIT_FAILED,
   RESET_PASSWORD_COMMIT_SUCCESS,
 } from '../types';
+import { getUserID } from './profileAction';
 
 export const registerUser = (registerData) => async (dispatch) => {
   const { fullName, email, password, phoneNumber } = registerData;
@@ -75,5 +77,20 @@ export const resetPasswordByEmail = (email) => async (dispatch) => {
 };
 
 export const resetPasswordCommit = (email, token) => async (dispatch) => {
-  return await passwordResetCommitAPI({ email, token });
+  const result = await passwordResetCommitAPI({ email, token });
+  setAuthToken(result.token.access_token);
+  await AsyncStorage.setItem('access_token', result.token.access_token);
+  await AsyncStorage.setItem('user_info', JSON.stringify(result.userInfo));
+
+  return result;
+};
+
+export const changePassword = ({ password, password_confirmation }) => async (
+  dispatch,
+) => {
+  return await changePasswordAPI({
+    userID: await getUserID(),
+    password,
+    password_confirmation,
+  });
 };
