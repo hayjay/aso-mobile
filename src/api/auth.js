@@ -33,8 +33,20 @@ export const resetPasswordByEmailAPI = async (payload) => {
 
 export const passwordResetCommitAPI = async ({ email, token }) => {
   try {
-    const result = await requestInstance.post(
+    const result = await requestInstance.get(
       `/api/vst/account/passwordReset?email=${email}&token=${token}`,
+    );
+    return result.data;
+  } catch (err) {
+    return handleError(err);
+  }
+};
+
+export const changePasswordAPI = async (payload) => {
+  try {
+    const result = await requestInstance.post(
+      '/api/vst/resetPassword',
+      payload,
     );
     return result.data;
   } catch (err) {
