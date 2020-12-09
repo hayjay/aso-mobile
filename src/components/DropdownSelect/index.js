@@ -1,6 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import React, { useState } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
+import DropDownPicker from 'react-native-dropdown-picker';
 
 import { spaces } from '../../style/variables';
 import CustomText from '../CustomText';
@@ -23,6 +24,35 @@ const DropdownSelect = ({ label, data = [], selectedItem, onSelect }) => {
       </Pressable>
       {isActive && (
         <View style={styles.dropdown}>
+          <DropDownPicker
+            items={[
+              {
+                label: 'USA',
+                value: 'usa',
+                hidden: true,
+              },
+              {
+                label: 'UK',
+                value: 'uk',
+              },
+              {
+                label: 'France',
+                value: 'france',
+              },
+            ]}
+            defaultValue="france"
+            // containerStyle={{ height: 40 }}
+            style={{ backgroundColor: '#fafafa' }}
+            itemStyle={{
+              justifyContent: 'flex-start',
+            }}
+            dropDownStyle={{ backgroundColor: '#fafafa' }}
+            // onChangeItem={(item) =>
+            //   this.setState({
+            //     country: item.value,
+            //   })
+            // }
+          />
           <View style={styles.dropdownContent}>
             {data.map((item) => (
               <Pressable
