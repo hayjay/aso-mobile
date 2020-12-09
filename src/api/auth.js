@@ -53,3 +53,14 @@ export const changePasswordAPI = async (payload) => {
     return handleError(err);
   }
 };
+
+export const confirmAccountAPI = async (otp) => {
+  try {
+    const result = await requestInstance.get(
+      `/api/vst/account/confirm?reference=${otp}`,
+    );
+    return result.data;
+  } catch (err) {
+    return handleError(err);
+  }
+};

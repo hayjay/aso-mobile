@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   changePasswordAPI,
+  confirmAccountAPI,
   login,
   passwordResetCommitAPI,
   register,
@@ -26,6 +27,7 @@ export const registerUser = (registerData) => async (dispatch) => {
     email,
     password,
     phoneNumber,
+    source: 'mobile',
   });
 
   if (result.error) {
@@ -74,6 +76,10 @@ export const loginUser = (authData) => async (dispatch) => {
 
 export const resetPasswordByEmail = (email) => async (dispatch) => {
   return await resetPasswordByEmailAPI({ email, source: 'mobile' });
+};
+
+export const confirmAccount = (otp) => async (dispatch) => {
+  return await confirmAccountAPI(otp);
 };
 
 export const resetPasswordCommit = (email, token) => async (dispatch) => {
