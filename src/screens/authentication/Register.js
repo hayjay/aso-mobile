@@ -30,9 +30,9 @@ const RegisterScreen = ({ navigation }) => {
       });
       return;
     }
-    navigation.navigate('Login');
+    navigation.navigate('ConfirmAccount', { email: values.email });
     Toast.show({
-      text1: 'Registration successful! Login to continue',
+      text1: 'Registration successful! Confirmation code sent to email',
     });
   };
 

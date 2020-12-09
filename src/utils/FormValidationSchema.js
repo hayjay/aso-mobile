@@ -1,6 +1,6 @@
 import * as yup from 'yup';
 
-const phoneRegex = RegExp(/^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/);
+const phoneRegex = RegExp(/^\(?([0-9]{4})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/);
 
 export const loginFormSchema = yup.object({
   email: yup.string().email().required(),

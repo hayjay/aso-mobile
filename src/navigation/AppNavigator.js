@@ -14,6 +14,7 @@ import PropertyDetailsScreen from '../screens/property/PropertyDetailsScreen';
 import ManageFinanceScreen from '../screens/ManageFinance';
 import MyWishlist from '../screens/MyWishlist';
 import ForgotPassword from '../screens/authentication/ForgotPassword';
+import ConfirmAccount from '../screens/authentication/ConfirmAccount';
 import BuyScreen from '../screens/home/BuyScreen';
 import RentScreen from '../screens/home/RentScreen';
 import FeaturedScreen from '../screens/home/FeaturedScreen';
@@ -43,6 +44,7 @@ const AppNavigator = () => {
         <Stack.Screen name="Buy" component={BuyScreen} />
         <Stack.Screen name="Rent" component={RentScreen} />
         <Stack.Screen name="Featured" component={FeaturedScreen} />
+        <Stack.Screen name="ConfirmAccount" component={ConfirmAccount} />
       </Drawer.Navigator>
     </NavigationContainer>
   );
@@ -74,6 +76,7 @@ function stackNavigator() {
         <Stack.Screen name="Buy" component={BuyScreen} />
         <Stack.Screen name="Rent" component={RentScreen} />
         <Stack.Screen name="Featured" component={FeaturedScreen} />
+        <Stack.Screen name="ConfirmAccount" component={ConfirmAccount} />
       </Stack.Navigator>
     </NavigationContainer>
   );
