@@ -10,7 +10,7 @@ import HomeScreen from '../screens/home/Home';
 import ProfileScreen from '../screens/Profile';
 import CitiesScreen from '../screens/home/CitiesScreen';
 import MyPropertiesScreen from '../screens/MyProperties';
-import PropertyDetailsScreen from '../screens/property/PropertyDetailsScreen';
+import ProductDetails from '../screens/ProductDetails';
 import ManageFinanceScreen from '../screens/ManageFinance';
 import MyWishlist from '../screens/MyWishlist';
 import ForgotPassword from '../screens/authentication/ForgotPassword';
@@ -34,10 +34,7 @@ const AppNavigator = () => {
         <Stack.Screen name="Profile" component={ProfileScreen} />
         <Stack.Screen name="Cities" component={CitiesScreen} />
         <Stack.Screen name="MyProperties" component={MyPropertiesScreen} />
-        <Stack.Screen
-          name="PropertyDetails"
-          component={PropertyDetailsScreen}
-        />
+        <Stack.Screen name="ProductDetails" component={ProductDetails} />
         <Stack.Screen name="ManageFinance" component={ManageFinanceScreen} />
         <Stack.Screen name="MyWishlist" component={MyWishlist} />
         <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
@@ -49,37 +46,5 @@ const AppNavigator = () => {
     </NavigationContainer>
   );
 };
-
-function stackNavigator() {
-  return (
-    <NavigationContainer>
-      <Stack.Navigator
-        // initialRouteName="ForgotPassword"
-        screenOptions={{
-          headerShown: false,
-          cardStyle: { backgroundColor: 'white' },
-        }}>
-        <Stack.Screen name="Onboarding" component={Onboarding} />
-        <Stack.Screen name="Login" component={LoginScreen} />
-        <Stack.Screen name="Register" component={RegisterScreen} />
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Profile" component={ProfileScreen} />
-        <Stack.Screen name="Cities" component={CitiesScreen} />
-        <Stack.Screen name="MyProperties" component={MyPropertiesScreen} />
-        <Stack.Screen
-          name="PropertyDetails"
-          component={PropertyDetailsScreen}
-        />
-        <Stack.Screen name="ManageFinance" component={ManageFinanceScreen} />
-        <Stack.Screen name="MyWishlist" component={MyWishlist} />
-        <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
-        <Stack.Screen name="Buy" component={BuyScreen} />
-        <Stack.Screen name="Rent" component={RentScreen} />
-        <Stack.Screen name="Featured" component={FeaturedScreen} />
-        <Stack.Screen name="ConfirmAccount" component={ConfirmAccount} />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
-}
 
 export default AppNavigator;

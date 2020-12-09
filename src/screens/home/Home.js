@@ -74,6 +74,9 @@ const HomeScreen = ({ navigation }) => {
         />
         <ProductGroup
           data={propertiesForSale}
+          onItemPress={(product) =>
+            navigation.navigate('ProductDetails', { product })
+          }
           navigation={navigation}
           itemCategory={HOME_SALE_ITEM}
           itemWidth={170}
@@ -81,13 +84,14 @@ const HomeScreen = ({ navigation }) => {
           title="Property for sale"
           actionButton={{
             text: 'View All',
-            onPress: () => {
-              navigation.navigate('Buy');
-            },
+            onPress: () => navigation.navigate('Buy'),
           }}
         />
         <ProductGroup
           data={propertiesForRent}
+          onItemPress={(product) =>
+            navigation.navigate('ProductDetails', { product })
+          }
           navigation={navigation}
           itemCategory={HOME_RENT_ITEM}
           itemWidth={170}
@@ -95,13 +99,14 @@ const HomeScreen = ({ navigation }) => {
           title="Property for rent"
           actionButton={{
             text: 'View All',
-            onPress: () => {
-              navigation.navigate('Rent');
-            },
+            onPress: () => navigation.navigate('Rent'),
           }}
         />
         <ProductGroup
           data={majorCities}
+          onItemPress={(product) =>
+            navigation.navigate('ProductDetails', { product })
+          }
           navigation={navigation}
           itemWidth={170}
           horizontal
@@ -109,9 +114,7 @@ const HomeScreen = ({ navigation }) => {
           title="Browse property in major cities"
           actionButton={{
             text: 'View All',
-            onPress: () => {
-              navigation.navigate('Cities');
-            },
+            onPress: () => navigation.navigate('Cities'),
           }}
         />
       </ScrollView>
