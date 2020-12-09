@@ -1,5 +1,11 @@
 import React, { Fragment } from 'react';
-import { Pressable, ScrollView, View, Text } from 'react-native';
+import {
+  Pressable,
+  ScrollView,
+  View,
+  Text,
+  TouchableOpacity,
+} from 'react-native';
 
 import styles from './styles';
 import CustomText from '../CustomText';
@@ -15,6 +21,7 @@ const ProductGroup = ({
   actionButton,
   itemCategory,
   grid = false,
+  onItemPress = () => {},
 }) => {
   const horizontalProps = {
     horizontal: true,
@@ -32,8 +39,8 @@ const ProductGroup = ({
     return (
       <ListContainer {...(grid ? { style: gridStyle } : {})}>
         {data.length > 0 ? (
-          data.map(
-            ({
+          data.map((itemDetails) => {
+            const {
               propertyID,
               date_diff: label,
               primary_image_link: imageUrl,
@@ -45,8 +52,13 @@ const ProductGroup = ({
               no_bedroom,
               no_cars,
               no_bathroom,
-            }) => (
-              <View style={grid && { width: '50%' }} key={propertyID}>
+            } = itemDetails;
+            return (
+              <TouchableOpacity
+                onPress={() => onItemPress(itemDetails)}
+                activeOpacity={0.7}
+                style={grid && { width: '50%' }}
+                key={propertyID}>
                 <ProductCard
                   containerStyle={[styles.featured, { width: itemWidth }]}
                   label={label}
@@ -61,10 +73,11 @@ const ProductGroup = ({
                   numberCars={no_cars}
                   itemCategory={itemCategory}
                   propertyID={propertyID}
+                  onPress={onItemPress}
                 />
-              </View>
-            ),
-          )
+              </TouchableOpacity>
+            );
+          })
         ) : (
           <Text>No Item Found!</Text>
         )}
