@@ -1,5 +1,5 @@
 import React from 'react';
-import { Pressable, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 import CustomText from '../CustomText';
@@ -9,12 +9,12 @@ const TypeSelector = ({ selected, text }) => {
   const color = selected ? '#fff' : 'grey';
   const backgroundColor = selected ? colors.red : '#fff';
   return (
-    <Pressable style={[styles.container, { backgroundColor }]}>
+    <View style={[styles.container, { backgroundColor }]}>
       <Ionicons name="md-done-all" size={22} color={color} />
       <CustomText numberOfLines={2} style={[styles.text, { color }]}>
         {text}
       </CustomText>
-    </Pressable>
+    </View>
   );
 };
 const styles = StyleSheet.create({
@@ -28,11 +28,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 10,
 
-    elevation: 2,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.32,
+    shadowRadius: 5,
+    elevation: 6,
   },
   text: {
     fontFamily: 'Roboto-Medium',
-    fontSize: 12,
+    fontSize: 10,
     textAlign: 'center',
     marginTop: 5,
   },
