@@ -11,6 +11,7 @@ const CustomInput = ({
   value,
   toggleVisibility,
   type,
+  width,
   ...inputProps
 }) => {
   const [secureTextEntry, setSecureTextEntry] = useState(
@@ -31,7 +32,7 @@ const CustomInput = ({
   const typeStyle = typeToStyles[type] || {};
 
   return (
-    <View style={containerStyle}>
+    <View style={[containerStyle, { width }]}>
       <View style={[styles.inputContainer, typeStyle]}>
         {iconLeft}
         <TextInput

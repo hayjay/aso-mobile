@@ -7,6 +7,7 @@ import Onboarding from '../screens/onboarding';
 import LoginScreen from '../screens/authentication/Login';
 import RegisterScreen from '../screens/authentication/Register';
 import HomeScreen from '../screens/home/Home';
+import FilterScreen from '../screens/home/FilterScreen';
 import ProfileScreen from '../screens/Profile';
 import CitiesScreen from '../screens/home/CitiesScreen';
 import MyPropertiesScreen from '../screens/MyProperties';
@@ -31,6 +32,7 @@ const AppNavigator = () => {
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Register" component={RegisterScreen} />
         <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Filter" component={FilterScreen} />
         <Stack.Screen name="Profile" component={ProfileScreen} />
         <Stack.Screen name="Cities" component={CitiesScreen} />
         <Stack.Screen name="MyProperties" component={MyPropertiesScreen} />

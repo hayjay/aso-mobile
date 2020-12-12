@@ -16,6 +16,7 @@ import Filter from '../../components/Filter';
 import CustomInput from '../../components/CustomInput';
 import { spaces } from '../../style/variables';
 import FilterButton from '../../components/FilterButton';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const HomeScreen = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -58,7 +59,9 @@ const HomeScreen = ({ navigation }) => {
           type="search"
           placeholder="Search property"
         />
-        <FilterButton onPress={() => setIsFilterVisible(true)} />
+        <TouchableOpacity onPress={() => navigation.navigate('Filter')}>
+          <FilterButton />
+        </TouchableOpacity>
       </View>
       <ScrollView>
         <ProductGroup
@@ -118,10 +121,6 @@ const HomeScreen = ({ navigation }) => {
           }}
         />
       </ScrollView>
-      <Filter
-        isVisible={isFilterVisible}
-        closeModal={() => setIsFilterVisible(false)}
-      />
     </View>
   );
 };
