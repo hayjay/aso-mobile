@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
-import { View, Switch } from 'react-native';
+import { View, Switch, Pressable } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview';
+import { Ionicons } from '@expo/vector-icons';
 
 import styles from './styles';
 import Avatar from '../../components/Avatar';
 import CustomHeader from '../../components/CustomHeader';
 import CustomInput from '../../components/CustomInput';
-import TextButton from '../../components/TextButton';
 import CustomText from '../../components/CustomText';
 import Button from '../../components/Button';
-import Selection from '../../components/Selection';
 import SelectionGroup from '../../components/SelectionGroup';
 
 const EditProfile = () => {
@@ -36,6 +35,9 @@ const EditProfile = () => {
         <View style={styles.bannerArea}></View>
         <View style={styles.avatarContainer}>
           <Avatar borderWidth={3} />
+          <Pressable style={styles.cameraButton}>
+            <Ionicons name="md-camera" size={20} color="#fff" />
+          </Pressable>
         </View>
         <View style={styles.contentContainer}>
           <CustomText type="info-title" style={styles.title}>

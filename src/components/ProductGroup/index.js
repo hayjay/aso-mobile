@@ -11,6 +11,7 @@ import styles from './styles';
 import CustomText from '../CustomText';
 import ProductCard from '../ProductCard';
 import CityThumbnail from '../CityThumbnail';
+import RateCard from '../RateCard';
 
 const ProductGroup = ({
   title,
@@ -95,9 +96,19 @@ const ProductGroup = ({
     ));
   };
 
+  const rateList = () => {
+    return data.map(({ mainText }) => (
+      <RateCard
+        mainText={mainText}
+        containerStyle={[styles.featured, { width: itemWidth }]}
+      />
+    ));
+  };
+
   const itemOptions = {
     product: productList,
     city: cityList,
+    rate: rateList,
   };
   const renderSelectedItem = itemOptions[type];
 

@@ -11,7 +11,7 @@ const ManageFinance = ({ navigation }) => {
     {
       id: 1,
       title: 'Payment Options',
-      onPress: () => navigation.navigate('MyProperties'),
+      onPress: () => navigation.navigate('PaymentOption'),
     },
     {
       id: 2,
@@ -23,6 +23,7 @@ const ManageFinance = ({ navigation }) => {
       onPress: () => navigation.navigate('ManageFinance'),
     },
   ];
+
   return (
     <View style={styles.container}>
       <CustomHeader
