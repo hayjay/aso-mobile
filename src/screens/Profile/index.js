@@ -32,7 +32,7 @@ const Profile = ({ navigation }) => {
     {
       id: 4,
       title: 'My Profile',
-      onPress: () => navigation.navigate('Home'),
+      onPress: () => navigation.navigate('MyProfile'),
     },
   ];
 

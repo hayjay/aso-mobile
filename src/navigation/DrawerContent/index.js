@@ -8,26 +8,33 @@ import CustomText from '../../components/CustomText';
 import Avatar from '../../components/Avatar';
 
 const CustomDrawerContent = (props) => {
-  const routeItems = {
-    Home: 'Home',
-    Buy: 'Buy',
-    Rent: 'Rent',
-    Sell: 'Sell',
-    ManageFinance: 'Manage Finance',
-  };
-  const drawerItems = [];
-
-  const routes = Object.keys(props.descriptors);
-  routes.forEach((route) => {
-    const itemKey = route.split('-')[0];
-    if (routeItems[itemKey]) {
-      drawerItems.push({
-        label: routeItems[itemKey],
-        focused: props.descriptors[route]?.navigation?.isFocused(),
-        onPress: () => props.navigation.navigate(itemKey),
-      });
-    }
-  });
+  const drawerItems = [
+    {
+      label: 'Home',
+      focused: false,
+      onPress: () => props.navigation.navigate('Home'),
+    },
+    {
+      label: 'Buy',
+      focused: false,
+      onPress: () => props.navigation.navigate('Buy'),
+    },
+    {
+      label: 'Rent',
+      focused: false,
+      onPress: () => props.navigation.navigate('Rent'),
+    },
+    {
+      label: 'Sell',
+      focused: false,
+      onPress: () => props.navigation.navigate('Sell'),
+    },
+    {
+      label: 'Manage Finance',
+      focused: false,
+      onPress: () => props.navigation.navigate('ManageFinance'),
+    },
+  ];
 
   return (
     <DrawerContentScrollView
@@ -39,7 +46,7 @@ const CustomDrawerContent = (props) => {
       <View style={styles.infoArea}>
         <Avatar imageUrl="https://s3-alpha-sig.figma.com/img/c769/4f4a/db9c6d2ffb011dab05204f453b9f8467?Expires=1608508800&Signature=RKzlB0jllQS1BWyiT-X4gUaDwYfcFj8-knlGyOvy~JR4eAgHpoYhY2Glxgy3d6BseVnSAyAoT57DL59tGiYiM9qCAE1xf-iREWVJjxlQNdLfc4cz~PywYFCwRwTDBsrCkyP9YReaNewOAGlSWihjwt3HnvZmrGnc50OjpL~~plSuafOHwhPPvJnsNXoGfVD7HRqE0NlLiQqH9SlJNBmB3NM6L0ozxvY0AVbhBWfCNGyoi3phRvKIM3b45hW6al0D~yC~aCZ9SXYbShutkmeZA-v6HyawZqa-kIFdb6ipfzRJ8lKaDJ73u69i7~y1p~sRiK69riNVlXSrpKGMGSxDGg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA" />
         <CustomText style={styles.title}>Adebola Williams</CustomText>
-        <Pressable>
+        <Pressable onPress={() => props.navigation.navigate('Profile')}>
           <CustomText style={styles.actionText}>View Profile</CustomText>
         </Pressable>
       </View>

@@ -29,4 +29,7 @@ export default StyleSheet.create({
   searchIcon: {
     marginRight: 5,
   },
+  label: {
+    color: 'grey',
+  },
 });
