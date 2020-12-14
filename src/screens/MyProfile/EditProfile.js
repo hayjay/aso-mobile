@@ -10,11 +10,24 @@ import TextButton from '../../components/TextButton';
 import CustomText from '../../components/CustomText';
 import Button from '../../components/Button';
 import Selection from '../../components/Selection';
+import SelectionGroup from '../../components/SelectionGroup';
 
 const EditProfile = () => {
   const [promoSubActive, setPromoSubActive] = useState(true);
   const toggleSwitch = () =>
     setPromoSubActive((promoSubActive) => !promoSubActive);
+  const [selectedListing, setSelectedListing] = useState({});
+  const listingOptions = [
+    {
+      value: 'In Realtime',
+    },
+    {
+      value: 'Once a day',
+    },
+    {
+      value: 'No, thanks',
+    },
+  ];
 
   return (
     <>
@@ -56,9 +69,11 @@ const EditProfile = () => {
           <CustomText type="info-body">
             Send me interested listings and searches
           </CustomText>
-          <Selection text="In Realtime" />
-          <Selection text="Once a day" />
-          <Selection text="No, thanks" />
+          <SelectionGroup
+            selected={selectedListing.value}
+            options={listingOptions}
+            onSelect={setSelectedListing}
+          />
           <View style={styles.promoArea}>
             <CustomText type="info-body">
               Send me promos, tips & guide
