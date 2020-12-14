@@ -14,6 +14,7 @@ const CustomDrawerContent = (props) => {
     Rent: 'Rent',
     Sell: 'Sell',
     ManageFinance: 'Manage Finance',
+    HomeService: 'Home Service',
   };
   const drawerItems = [];
 

@@ -50,8 +50,8 @@ const CustomHeader = ({
 
   const renderLeftContent = icons[headerLeft];
   const renderRightContent = () =>
-    headerRightContents.map(({ type, onPress }) => (
-      <Pressable onPress={onPress} style={styles.rightButton}>
+    headerRightContents.map(({ type, onPress }, index) => (
+      <Pressable key={index} onPress={onPress} style={styles.rightButton}>
         {icons[type]}
       </Pressable>
     ));
