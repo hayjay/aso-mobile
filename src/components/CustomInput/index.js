@@ -12,10 +12,11 @@ const CustomInput = ({
   toggleVisibility,
   type,
   width,
+  label,
   ...inputProps
 }) => {
   const [secureTextEntry, setSecureTextEntry] = useState(
-    toggleVisibility || secureTextEntry,
+    toggleVisibility || inputProps.secureTextEntry,
   );
 
   const iconLeft = type === 'search' && (
@@ -33,6 +34,7 @@ const CustomInput = ({
 
   return (
     <View style={[containerStyle, { width }]}>
+      {label && <CustomText style={styles.label}>{label}</CustomText>}
       <View style={[styles.inputContainer, typeStyle]}>
         {iconLeft}
         <TextInput
