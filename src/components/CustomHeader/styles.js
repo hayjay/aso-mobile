@@ -29,6 +29,21 @@ export default StyleSheet.create({
     marginRight: 10,
     justifyContent: 'center',
   },
+  searchButton: {
+    paddingRight: 12,
+    paddingLeft: 12,
+    height: '100%',
+    justifyContent: 'center',
+    backgroundColor: '#131516',
+  },
+  closeButton: {
+    paddingRight: 20,
+    height: '100%',
+    paddingLeft: spaces.appSpacing01,
+    marginRight: 10,
+    justifyContent: 'center',
+    backgroundColor: '#131516',
+  },
   title: {
     color: '#fff',
     fontSize: 20,
@@ -60,6 +75,8 @@ export default StyleSheet.create({
     flex: 1,
     fontFamily: 'Roboto',
     fontSize: 16,
+    color: '#fff',
+    backgroundColor: '#131516',
   },
   searchResultContainer: {
     zIndex: 10,

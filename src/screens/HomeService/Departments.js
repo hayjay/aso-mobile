@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { View, StyleSheet, Image, Text } from 'react-native';
+import { View, StyleSheet, Image, Text, Pressable } from 'react-native';
 import furniture from '../../../assets/images/furniture.png';
 import livingRoom from '../../../assets/images/livingRoom.png';
 import kitchenDining from '../../../assets/images/kitchenDining.png';
 import bedroom from '../../../assets/images/bedroom.png';
 
-const Departments = () => {
+const Departments = ({ handleDepartment }) => {
   const [departments, setDepartments] = React.useState([
     { name: 'Furniture', image: furniture },
     { name: 'Bedroom', image: bedroom },
@@ -20,10 +20,13 @@ const Departments = () => {
   return (
     <View style={styles.container}>
       {departments.map((department, index) => (
-        <View style={styles.departmentCard} key={index}>
+        <Pressable
+          onPress={() => handleDepartment(department)}
+          key={index}
+          style={styles.departmentCard}>
           <Image source={department.image} />
           <Text style={styles.text}>{department.name}</Text>
-        </View>
+        </Pressable>
       ))}
     </View>
   );

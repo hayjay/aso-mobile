@@ -37,6 +37,7 @@ const HomeService = ({ route, navigation }) => {
     serviceCategoriesState,
   );
   const [activeCategory, setActiveCategory] = React.useState('Departments');
+  const [showSearchBar, setShowSearchBar] = React.useState(false);
 
   const handlePress = (category) => {
     serviceCategoriesDispatch({
@@ -47,13 +48,43 @@ const HomeService = ({ route, navigation }) => {
     setActiveCategory(category.name);
   };
 
+  const handleSearchPress = () => {
+    // setShowSearchBar(true);
+  };
+
+  const handleChangeText = (e) => {
+    console.log(e);
+  };
+
+  const toggleSearchBar = () => {
+    console.log('SEARCH BAR CLICK');
+    setShowSearchBar(!showSearchBar);
+  };
+
+  const handleDepartment = (dept) => {
+    console.log(dept);
+    if (dept.name === 'Furniture') {
+      navigation.navigate('Furnitures');
+    }
+  };
+
   return (
     <ScrollView>
       <View>
         <CustomHeader
-          headerRightContents={[{ type: 'more' }]}
+          headerRightContents={[
+            {
+              type: 'search',
+              onPress: toggleSearchBar,
+            },
+          ]}
           title="Home Service"
-          // searchBar={true}
+          searchBar={showSearchBar}
+          onCloseButtonPress={toggleSearchBar}
+          searchBarProps={{
+            placeholder: 'Search',
+            onChangeText: handleChangeText,
+          }}
         />
         <ScrollView
           horizontal
@@ -84,7 +115,9 @@ const HomeService = ({ route, navigation }) => {
         </View>
 
         <View>
-          {activeCategory === 'Departments' && <Departments />}
+          {activeCategory === 'Departments' && (
+            <Departments handleDepartment={handleDepartment} />
+          )}
           {activeCategory === 'Vendors' && <Vendors />}
           {activeCategory === 'Professionals' && <Professionals />}
           {activeCategory === 'Agents' && <Agents />}

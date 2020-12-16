@@ -12,6 +12,8 @@ import { useNavigation } from '@react-navigation/native';
 
 import styles from './styles';
 import BackButton from '../BackButton';
+import CloseButton from '../CloseButton';
+import SearchButton from '../SearchButton';
 import CustomText from '../CustomText';
 
 const CustomHeader = ({
@@ -22,6 +24,8 @@ const CustomHeader = ({
   searchBar,
   searchBarProps,
   onBackButtonPress,
+  onCloseButtonPress,
+  handleSearchPress,
 }) => {
   const navigation = useNavigation();
 
@@ -42,19 +46,39 @@ const CustomHeader = ({
         containerStyle={styles.backButton}
       />
     ),
+    search: () => (
+      <SearchButton
+        iconStyle={{ color: '#fff' }}
+        containerStyle={styles.searchButton}
+      />
+    ),
+    close: () => (
+      <CloseButton
+        onPress={onCloseButtonPress}
+        iconStyle={searchBar && { color: '#fff' }}
+        containerStyle={styles.closeButton}
+      />
+    ),
     menu: menuButton,
     more: (
       <Ionicons name="md-more" style={[styles.icon, { color: iconsColor }]} />
     ),
   };
 
-  const renderLeftContent = icons[headerLeft];
+  const renderLeftContent = searchBar ? icons.close : icons[headerLeft];
   const renderRightContent = () =>
-    headerRightContents.map(({ type, onPress }, index) => (
-      <Pressable key={index} onPress={onPress} style={styles.rightButton}>
-        {icons[type]}
-      </Pressable>
-    ));
+    headerRightContents.map(({ type, onPress }, index) => {
+      return (
+        <Pressable
+          key={index}
+          onPress={onPress}
+          style={
+            ([styles.rightButton], { backgroundColor: searchBar && '#131516' })
+          }>
+          {icons[type]}
+        </Pressable>
+      );
+    });
 
   return (
     <>

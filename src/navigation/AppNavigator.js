@@ -19,6 +19,7 @@ import ConfirmAccount from '../screens/authentication/ConfirmAccount';
 import BuyScreen from '../screens/home/BuyScreen';
 import RentScreen from '../screens/home/RentScreen';
 import FeaturedScreen from '../screens/home/FeaturedScreen';
+import FurnituresScreen from '../screens/HomeService/Furnitures';
 import HomeServiceScreen from '../screens/HomeService';
 import CustomDrawerContent from './DrawerContent';
 
@@ -34,6 +35,7 @@ const AppNavigator = () => {
         <Stack.Screen name="Register" component={RegisterScreen} />
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Filter" component={FilterScreen} />
+        <Stack.Screen name="Furnitures" component={FurnituresScreen} />
         <Stack.Screen name="Profile" component={ProfileScreen} />
         <Stack.Screen name="Cities" component={CitiesScreen} />
         <Stack.Screen name="HomeService" component={HomeServiceScreen} />
