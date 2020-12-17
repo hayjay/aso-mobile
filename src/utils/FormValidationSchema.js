@@ -7,6 +7,15 @@ export const loginFormSchema = yup.object({
   password: yup.string().required().min(6),
 });
 
+export const editFormSchema = yup.object({
+  fullName: yup.string().required().min(3),
+  password: yup.string().required().min(6),
+  phoneNumber: yup
+    .string()
+    .matches(phoneRegex, 'Invalid phone number')
+    .required('Phone is required'),
+});
+
 export const registerFormSchema = yup.object({
   fullName: yup.string().required().min(3),
   email: yup.string().email().required(),
