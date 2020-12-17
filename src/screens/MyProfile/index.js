@@ -1,5 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
+import { useSelector } from 'react-redux';
 
 import styles from './styles';
 import Avatar from '../../components/Avatar';
@@ -8,6 +9,8 @@ import CustomInput from '../../components/CustomInput';
 import TextButton from '../../components/TextButton';
 
 const MyProfile = ({ navigation }) => {
+  const { userInfo } = useSelector((state) => state.profile.myProfile);
+
   return (
     <View>
       <CustomHeader title="My Profile" />
@@ -25,13 +28,13 @@ const MyProfile = ({ navigation }) => {
         <CustomInput
           containerStyle={styles.input}
           label="Full Name"
-          value="Adejoke Benson"
+          value={userInfo.firstName + ' ' + userInfo.lastName}
           editable={false}
         />
         <CustomInput
           containerStyle={styles.input}
           label="Emaiil"
-          value="AdejokeBenson@gmail."
+          value={userInfo.email}
           editable={false}
         />
         <CustomInput
@@ -44,7 +47,7 @@ const MyProfile = ({ navigation }) => {
         <CustomInput
           containerStyle={styles.input}
           label="Phone Number"
-          value="08023242526"
+          value={userInfo.phone_number}
           editable={false}
         />
       </View>

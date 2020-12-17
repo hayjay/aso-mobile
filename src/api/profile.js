@@ -33,3 +33,27 @@ export const getMyWishlistAPI = async (userID) => {
     return handleError(err);
   }
 };
+
+export const editProfileAPI = async (data) => {
+  try {
+    const result = await requestInstance.post(
+      `/api/vst/profile/modifyInfo`,
+      data,
+    );
+    return result.data;
+  } catch (err) {
+    return handleError(err);
+  }
+};
+
+export const changeNotificationsAPI = async (data) => {
+  try {
+    const result = await requestInstance.post(
+      `/api/vst/profile/changeNotificationSetting`,
+      data,
+    );
+    return result.data;
+  } catch (err) {
+    return handleError(err);
+  }
+};
