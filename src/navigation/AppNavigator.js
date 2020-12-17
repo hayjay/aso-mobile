@@ -22,6 +22,7 @@ import FeaturedScreen from '../screens/home/FeaturedScreen';
 import FurnituresScreen from '../screens/HomeService/Furnitures';
 import ChairsScreen from '../screens/HomeService/Chairs';
 import ProductDetailsScreen from '../screens/HomeService/ProductDetails';
+import AllProfessionalsScreen from '../screens/HomeService/AllProfessionals';
 import HomeServiceScreen from '../screens/HomeService';
 import CustomDrawerContent from './DrawerContent';
 
@@ -39,6 +40,10 @@ const AppNavigator = () => {
         <Stack.Screen name="Filter" component={FilterScreen} />
         <Stack.Screen name="Furnitures" component={FurnituresScreen} />
         <Stack.Screen name="Chairs" component={ChairsScreen} />
+        <Stack.Screen
+          name="AllProfessionals"
+          component={AllProfessionalsScreen}
+        />
         <Stack.Screen
           name="ProductServiceDetails"
           component={ProductDetailsScreen}

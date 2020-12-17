@@ -1,41 +1,116 @@
 import * as React from 'react';
 import { View, StyleSheet, Image, Text } from 'react-native';
-import interiorDecor from '../../../assets/images/interiorDecor.png';
+import { ScrollView } from 'react-native-gesture-handler';
+import { Ionicons } from '@expo/vector-icons';
+
+import CustomHeader from '../../components/CustomHeader';
+import professional2 from '../../../assets/images/professional2.png';
 
 const AllProfessionals = () => {
   const [allProfessionals, setAllProfessionals] = React.useState([
-    { name: 'Interior design and decoration', image: interiorDecor },
-    { name: 'Interior design and decoration', image: interiorDecor },
-    { name: 'Interior design and decoration', image: interiorDecor },
-    { name: 'Interior design and decoration', image: interiorDecor },
-    { name: 'Interior design and decoration', image: interiorDecor },
-    { name: 'Interior design and decoration', image: interiorDecor },
-    { name: 'Interior design and decoration', image: interiorDecor },
-    { name: 'Interior design and decoration', image: interiorDecor },
+    {
+      name: 'David Chinedu',
+      image: professional2,
+      company: 'Smart Decor Enterprise',
+    },
+    {
+      name: 'David Chinedu',
+      image: professional2,
+      company: 'Smart Decor Enterprise',
+    },
+    {
+      name: 'David Chinedu',
+      image: professional2,
+      company: 'Smart Decor Enterprise',
+    },
+    {
+      name: 'David Chinedu',
+      image: professional2,
+      company: 'Smart Decor Enterprise',
+    },
+    {
+      name: 'David Chinedu',
+      image: professional2,
+      company: 'Smart Decor Enterprise',
+    },
+    {
+      name: 'David Chinedu',
+      image: professional2,
+      company: 'Smart Decor Enterprise',
+    },
+    {
+      name: 'David Chinedu',
+      image: professional2,
+      company: 'Smart Decor Enterprise',
+    },
+    {
+      name: 'David Chinedu',
+      image: professional2,
+      company: 'Smart Decor Enterprise',
+    },
   ]);
 
   return (
-    <View style={styles.container}>
-      {allProfessionals.map((vendor, index) => (
-        <View style={styles.vendorCard} key={index}>
-          <Image source={vendor.image} style={styles.image} />
-          <Text style={styles.text}>{vendor.name}</Text>
+    <ScrollView>
+      <CustomHeader
+        headerRightContents={[{ type: 'search' }]}
+        title="Professionals"
+      />
+      <View style={styles.heading}>
+        <Text style={styles.headingText}>32 interior designers</Text>
+        <View style={styles.sort}>
+          <Text style={styles.sortText}>Sort by</Text>
+          <Ionicons
+            name="md-arrow-dropdown"
+            size={24}
+            color="rgba(19, 21, 22, 0.5)"
+          />
         </View>
-      ))}
-    </View>
+      </View>
+      <View style={styles.container}>
+        {allProfessionals.map((professional, index) => (
+          <View style={styles.professionalCard} key={index}>
+            <Image source={professional.image} style={styles.image} />
+            <View>
+              <Text style={styles.name}>{professional.name}</Text>
+              <Text style={styles.company}>{professional.company}</Text>
+            </View>
+          </View>
+        ))}
+      </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    paddingLeft: 16,
-    paddingRight: 16,
-    marginTop: 15,
+    paddingLeft: 20,
+    paddingRight: 20,
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
   },
-  vendorCard: {
+  heading: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 25,
+    marginLeft: 20,
+    marginBottom: 15,
+    width: '92%',
+  },
+  headingText: {
+    color: 'rgba(19, 21, 22, 0.8)',
+    fontSize: 15,
+  },
+  sort: {
+    flexDirection: 'row',
+  },
+  sortText: {
+    color: 'rgba(19, 21, 22, 0.65)',
+    fontSize: 15,
+    marginRight: 3,
+  },
+  professionalCard: {
     flexBasis: '47%',
     backgroundColor: '#fff',
     borderRadius: 6,
@@ -53,6 +128,19 @@ const styles = StyleSheet.create({
     shadowRadius: 5.46,
     elevation: 6,
   },
+  name: {
+    color: 'rgba(19, 21, 22, 0.65)',
+    fontSize: 15,
+    textAlign: 'center',
+    marginTop: 10,
+  },
+  company: {
+    color: 'rgba(19, 21, 22, 0.6)',
+    fontSize: 12,
+    textAlign: 'center',
+    marginTop: 3,
+  },
+
   image: {
     width: '100%',
     borderRadius: 6,

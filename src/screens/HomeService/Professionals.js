@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { View, StyleSheet, Image, Text } from 'react-native';
+import { View, StyleSheet, Image, Text, TouchableOpacity } from 'react-native';
 import professionalImage from '../../../assets/images/professionals.png';
 
-const Professionals = () => {
+const Professionals = ({ handleProfessionalPress }) => {
   const [professionals, setProfessionals] = React.useState([
     { name: 'Interior designers & decorators', image: professionalImage },
     { name: 'Kitchen & bathroom designers', image: professionalImage },
@@ -17,10 +17,13 @@ const Professionals = () => {
   return (
     <View style={styles.container}>
       {professionals.map((professional, index) => (
-        <View style={styles.professionalCard} key={index}>
+        <TouchableOpacity
+          onPress={handleProfessionalPress}
+          style={styles.professionalCard}
+          key={index}>
           <Image source={professional.image} style={styles.image} />
           <Text style={styles.text}>{professional.name}</Text>
-        </View>
+        </TouchableOpacity>
       ))}
     </View>
   );

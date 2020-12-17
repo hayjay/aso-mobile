@@ -116,7 +116,13 @@ const HomeService = ({ route, navigation }) => {
             <Departments handleDepartment={handleDepartment} />
           )}
           {activeCategory === 'Vendors' && <Vendors />}
-          {activeCategory === 'Professionals' && <Professionals />}
+          {activeCategory === 'Professionals' && (
+            <Professionals
+              handleProfessionalPress={() =>
+                navigation.navigate('AllProfessionals')
+              }
+            />
+          )}
           {activeCategory === 'Agents' && <Agents />}
           {activeCategory === 'Lawyers' && <Lawyers />}
         </View>
