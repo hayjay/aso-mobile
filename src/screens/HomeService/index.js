@@ -52,9 +52,7 @@ const HomeService = ({ route, navigation }) => {
     // setShowSearchBar(true);
   };
 
-  const handleChangeText = (e) => {
-    console.log(e);
-  };
+  const handleChangeText = (e) => {};
 
   const toggleSearchBar = () => {
     console.log('SEARCH BAR CLICK');
@@ -62,7 +60,6 @@ const HomeService = ({ route, navigation }) => {
   };
 
   const handleDepartment = (dept) => {
-    console.log(dept);
     if (dept.name === 'Furniture') {
       navigation.navigate('Furnitures');
     }
