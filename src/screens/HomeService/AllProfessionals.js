@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { View, StyleSheet, Image, Text } from 'react-native';
+import { View, StyleSheet, Image, Text, Pressable } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { Ionicons } from '@expo/vector-icons';
 
 import CustomHeader from '../../components/CustomHeader';
 import professional2 from '../../../assets/images/professional2.png';
 
-const AllProfessionals = () => {
+const AllProfessionals = ({ navigation }) => {
   const [allProfessionals, setAllProfessionals] = React.useState([
     {
       name: 'David Chinedu',
@@ -69,13 +69,16 @@ const AllProfessionals = () => {
       </View>
       <View style={styles.container}>
         {allProfessionals.map((professional, index) => (
-          <View style={styles.professionalCard} key={index}>
+          <Pressable
+            style={styles.professionalCard}
+            key={index}
+            onPress={() => navigation.navigate('ProfessionalDetails')}>
             <Image source={professional.image} style={styles.image} />
             <View>
               <Text style={styles.name}>{professional.name}</Text>
               <Text style={styles.company}>{professional.company}</Text>
             </View>
-          </View>
+          </Pressable>
         ))}
       </View>
     </ScrollView>
