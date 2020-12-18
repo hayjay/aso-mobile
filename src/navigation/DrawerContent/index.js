@@ -34,12 +34,35 @@ const CustomDrawerContent = (props) => {
       focused: false,
       onPress: () => props.navigation.navigate('ManageFinance'),
     },
+    {
+      label: 'Home Services',
+      focused: false,
+      onPress: () => props.navigation.navigate(''),
+    },
+    {
+      label: 'Advertise',
+      focused: false,
+      onPress: () => props.navigation.navigate(''),
+    },
+    {
+      label: 'Tips & Guide',
+      focused: false,
+      onPress: () => props.navigation.navigate(''),
+    },
+    {
+      label: 'Privacy Policies',
+      focused: false,
+      onPress: () => props.navigation.navigate(''),
+    },
+    {
+      label: 'Help & Support',
+      focused: false,
+      onPress: () => props.navigation.navigate(''),
+    },
   ];
 
   return (
-    <DrawerContentScrollView
-      contentContainerStyle={styles.container}
-      {...props}>
+    <DrawerContentScrollView style={styles.container} {...props}>
       <Pressable style={styles.homeButton}>
         <Ionicons name="md-menu" style={styles.homeButtonIcon} />
       </Pressable>
@@ -71,7 +94,6 @@ const CustomDrawerContent = (props) => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#303030',
-    height: '100%',
   },
   infoArea: {
     justifyContent: 'center',
