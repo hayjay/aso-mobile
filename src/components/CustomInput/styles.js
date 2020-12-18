@@ -31,5 +31,6 @@ export default StyleSheet.create({
   },
   label: {
     color: 'grey',
+    marginBottom: 5,
   },
 });

@@ -29,6 +29,14 @@ const CustomInput = ({
       borderColor: '#ccc',
       paddingLeft: 10,
     },
+    textArea: {
+      borderWidth: 1,
+      borderRadius: 6,
+      borderColor: '#ccc',
+      paddingLeft: 10,
+      minHeight: 80,
+      alignItems: 'flex-start',
+    },
   };
   const typeStyle = typeToStyles[type] || {};
 
@@ -41,6 +49,7 @@ const CustomInput = ({
           placeholderTextColor="#aaa"
           value={value}
           style={styles.input}
+          multiline={type === 'textArea'}
           {...inputProps}
           secureTextEntry={secureTextEntry}
         />
