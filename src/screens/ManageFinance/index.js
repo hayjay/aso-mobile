@@ -16,6 +16,7 @@ const ManageFinance = ({ navigation }) => {
     {
       id: 2,
       title: 'Affordability Calculator',
+      onPress: () => navigation.navigate('Affordability'),
     },
     {
       id: 3,

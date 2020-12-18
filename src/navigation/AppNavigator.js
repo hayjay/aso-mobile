@@ -23,6 +23,7 @@ import CustomDrawerContent from './DrawerContent';
 import MyProfile from '../screens/MyProfile';
 import EditProfile from '../screens/MyProfile/EditProfile';
 import PaymentOption from '../screens/PaymentOption';
+import Affordability from '../screens/Affordability';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -53,6 +54,7 @@ const MainNavigator = () => {
       <Stack.Screen name="MyProfile" component={MyProfile} />
       <Stack.Screen name="EditProfile" component={EditProfile} />
       <Stack.Screen name="PaymentOption" component={PaymentOption} />
+      <Stack.Screen name="Affordability" component={Affordability} />
     </Stack.Navigator>
   );
 };

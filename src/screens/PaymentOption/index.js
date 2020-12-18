@@ -78,59 +78,61 @@ const PaymentOption = () => {
     );
   };
 
-  const instalmentContent = () => {
+  const InstalmentContent = () => {
     return (
-      <KeyboardAwareScrollView>
-        <View style={styles.bodyContainer}>
-          <CustomText type="info-title" style={styles.sectionTitle}>
-            Instalment Calculator
-          </CustomText>
-          <CustomText type="info-body">
-            As the downturn from coronavirus pandemic squeezes the economy,
-            higher-end and luxury.
-          </CustomText>
-          <View style={styles.calcContainer}>
-            <View style={styles.calcInput}>
-              <CustomInput
-                containerStyle={styles.calcInput}
-                placeholder="Price"
-              />
+      <>
+        <KeyboardAwareScrollView>
+          <View style={styles.bodyContainer}>
+            <CustomText type="info-title" style={styles.sectionTitle}>
+              Instalment Calculator
+            </CustomText>
+            <CustomText type="info-body">
+              As the downturn from coronavirus pandemic squeezes the economy,
+              higher-end and luxury.
+            </CustomText>
+            <View style={styles.calcContainer}>
+              <View style={styles.calcInput}>
+                <CustomInput
+                  containerStyle={styles.calcInput}
+                  placeholder="Price"
+                />
+              </View>
+              <View style={styles.calcInput}>
+                <CustomInput
+                  containerStyle={styles.calcInput}
+                  placeholder="Net salary"
+                />
+              </View>
+              <View style={styles.calcInput}>
+                <CustomInput
+                  containerStyle={styles.calcInput}
+                  placeholder="Down payment"
+                />
+              </View>
+              <View style={styles.calcInput}>
+                <CustomInput
+                  containerStyle={styles.calcInput}
+                  placeholder="Tenure"
+                />
+              </View>
+              <Button containerStyle={styles.actionButton} text="Calculate" />
             </View>
-            <View style={styles.calcInput}>
-              <CustomInput
-                containerStyle={styles.calcInput}
-                placeholder="Net salary"
-              />
-            </View>
-            <View style={styles.calcInput}>
-              <CustomInput
-                containerStyle={styles.calcInput}
-                placeholder="Down payment"
-              />
-            </View>
-            <View style={styles.calcInput}>
-              <CustomInput
-                containerStyle={styles.calcInput}
-                placeholder="Tenure"
-              />
-            </View>
-            <Button containerStyle={styles.actionButton} text="Calculate" />
+            <CustomText style={styles.sectionTitle} type="info-title">
+              Instalment Payment Plan
+            </CustomText>
+            <CustomText type="info-body">
+              As the downturn from coronavirus pandemic squeezes the economy,
+              higher-end and luxury.
+            </CustomText>
           </View>
-          <CustomText style={styles.sectionTitle} type="info-title">
-            Instalment Payment Plan
-          </CustomText>
-          <CustomText type="info-body">
-            As the downturn from coronavirus pandemic squeezes the economy,
-            higher-end and luxury.
-          </CustomText>
-        </View>
-      </KeyboardAwareScrollView>
+        </KeyboardAwareScrollView>
+      </>
     );
   };
 
   const renderScene = SceneMap({
     mortgage: mortgageContent,
-    instalment: instalmentContent,
+    instalment: InstalmentContent,
   });
 
   const rateData = [
