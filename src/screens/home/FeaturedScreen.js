@@ -42,6 +42,9 @@ const FeaturedScreen = ({ route, navigation }) => {
       <ProductGroup
         data={featuredItems}
         navigation={navigation}
+        onItemPress={(product) =>
+          navigation.navigate('ProductDetails', { product })
+        }
         itemWidth={370}
         title={
           type === 'Buy'

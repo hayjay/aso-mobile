@@ -39,6 +39,9 @@ const RentScreen = ({ navigation }) => {
         <ProductGroup
           data={featuredItems}
           navigation={navigation}
+          onItemPress={(product) =>
+            navigation.navigate('ProductDetails', { product })
+          }
           itemWidth={330}
           horizontal
           title="Featured property for rent"
@@ -53,6 +56,9 @@ const RentScreen = ({ navigation }) => {
           data={propertiesForRent}
           navigation={navigation}
           itemCategory={HOME_SALE_ITEM}
+          onItemPress={(product) =>
+            navigation.navigate('ProductDetails', { product })
+          }
           itemWidth={170}
           horizontal
           title="New listing for rent"
@@ -65,6 +71,9 @@ const RentScreen = ({ navigation }) => {
         <ProductGroup
           data={majorCities}
           navigation={navigation}
+          onItemPress={(product) =>
+            navigation.navigate('ProductDetails', { product })
+          }
           itemWidth={170}
           horizontal
           type="city"

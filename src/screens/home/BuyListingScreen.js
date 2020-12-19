@@ -33,6 +33,9 @@ const BuyListingScreen = ({ navigation }) => {
           data={propertiesForSale}
           navigation={navigation}
           itemCategory={HOME_SALE_ITEM}
+          onItemPress={(product) =>
+            navigation.navigate('ProductDetails', { product })
+          }
           itemWidth={170}
           horizontal={false}
           title="All new listing for sale"

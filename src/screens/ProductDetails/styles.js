@@ -24,6 +24,7 @@ export default StyleSheet.create({
   backButton: {
     paddingLeft: spaces.appSpacing01,
     paddingRight: 20,
+    paddingTop: 20,
   },
   metaItemsContainer: {
     flexDirection: 'row',

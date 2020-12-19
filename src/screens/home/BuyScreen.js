@@ -38,6 +38,9 @@ const BuyScreen = ({ navigation }) => {
         <ProductGroup
           data={featuredItems}
           navigation={navigation}
+          onItemPress={(product) =>
+            navigation.navigate('ProductDetails', { product })
+          }
           itemWidth={330}
           horizontal
           title="Featured property for sale"
@@ -52,6 +55,9 @@ const BuyScreen = ({ navigation }) => {
           data={propertiesForSale}
           navigation={navigation}
           itemCategory={HOME_SALE_ITEM}
+          onItemPress={(product) =>
+            navigation.navigate('ProductDetails', { product })
+          }
           itemWidth={170}
           horizontal
           title="New listing for sale"
@@ -64,6 +70,9 @@ const BuyScreen = ({ navigation }) => {
         <ProductGroup
           data={majorCities}
           navigation={navigation}
+          onItemPress={(product) =>
+            navigation.navigate('ProductDetails', { product })
+          }
           itemWidth={170}
           horizontal
           type="city"
