@@ -1,15 +1,15 @@
 import React, { useEffect } from 'react';
-import { StyleSheet, View, ScrollView } from 'react-native';
+import { StyleSheet, View, ScrollView, TouchableOpacity } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import CustomHeader from '../../components/CustomHeader';
+import CustomInput from '../../components/CustomInput';
+import FilterButton from '../../components/FilterButton';
 import ProductGroup from '../../components/ProductGroup';
 
-import * as propertyAction from '../../redux/actions/propertyAction';
+import { spaces } from '../../style/variables';
 import { HOME_SALE_ITEM, majorCities, SALES } from '../../utils/constants';
 
 const BuyScreen = ({ navigation }) => {
-  const dispatch = useDispatch();
-
   const { featuredPropertiesSales, newSalesProperties } = useSelector(
     (state) => state.properties,
   );
@@ -21,13 +21,19 @@ const BuyScreen = ({ navigation }) => {
     ? newSalesProperties.new_listing.data
     : [];
 
-  useEffect(() => {
-    dispatch(propertyAction.getFeaturedPropertiesSales());
-  }, [dispatch]);
-
   return (
     <View style={styles.container}>
       <CustomHeader title="Buy" />
+      <View style={styles.searchArea}>
+        <CustomInput
+          containerStyle={{ flex: 1, marginRight: 10 }}
+          type="search"
+          placeholder="Search property"
+        />
+        <TouchableOpacity onPress={() => navigation.navigate('Filter')}>
+          <FilterButton />
+        </TouchableOpacity>
+      </View>
       <ScrollView>
         <ProductGroup
           data={featuredItems}
@@ -51,7 +57,7 @@ const BuyScreen = ({ navigation }) => {
           title="New listing for sale"
           actionButton={{
             text: 'View All',
-            onPress: () => {},
+            onPress: () => navigation.navigate('BuyListing'),
           }}
         />
 
@@ -77,6 +83,11 @@ const BuyScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  searchArea: {
+    paddingHorizontal: spaces.appSpacing01,
+    marginTop: 10,
+    flexDirection: 'row',
   },
 });
 

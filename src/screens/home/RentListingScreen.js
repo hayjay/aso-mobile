@@ -1,34 +1,24 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { StyleSheet, View, Text } from 'react-native';
+import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import { useSelector } from 'react-redux';
 import CustomHeader from '../../components/CustomHeader';
 import CustomInput from '../../components/CustomInput';
 import FilterButton from '../../components/FilterButton';
 import ProductGroup from '../../components/ProductGroup';
 import { spaces } from '../../style/variables';
+import { HOME_SALE_ITEM } from '../../utils/constants';
 
-const FeaturedScreen = ({ route, navigation }) => {
-  const { type } = route.params;
+const RentListingScreen = ({ navigation }) => {
+  const { newRentsProperties } = useSelector((state) => state.properties);
 
-  let featuredCategory;
-  if (type === 'Buy') {
-    featuredCategory = useSelector(
-      (state) => state.properties.featuredPropertiesSales,
-    );
-  } else {
-    featuredCategory = useSelector(
-      (state) => state.properties.featuredPropertiesRents,
-    );
-  }
-
-  const featuredItems = featuredCategory.featured_properties
-    ? featuredCategory.featured_properties.data
+  const propertiesForRent = newRentsProperties.new_listing
+    ? newRentsProperties.new_listing.data
     : [];
 
   return (
     <View style={styles.container}>
-      <CustomHeader title={type} />
+      <CustomHeader title="Rent" />
       <View style={styles.searchArea}>
         <CustomInput
           containerStyle={{ flex: 1, marginRight: 10 }}
@@ -39,17 +29,16 @@ const FeaturedScreen = ({ route, navigation }) => {
           <FilterButton />
         </TouchableOpacity>
       </View>
-      <ProductGroup
-        data={featuredItems}
-        navigation={navigation}
-        itemWidth={370}
-        title={
-          type === 'Buy'
-            ? 'Featured property for sale'
-            : 'Featured property for rent'
-        }
-        horizontal={false}
-      />
+      <ScrollView>
+        <ProductGroup
+          data={propertiesForRent}
+          navigation={navigation}
+          itemCategory={HOME_SALE_ITEM}
+          itemWidth={170}
+          horizontal={false}
+          title="New listing for rent"
+        />
+      </ScrollView>
     </View>
   );
 };
@@ -65,4 +54,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default FeaturedScreen;
+export default RentListingScreen;

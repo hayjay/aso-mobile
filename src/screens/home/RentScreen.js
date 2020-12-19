@@ -1,15 +1,16 @@
 import React, { useEffect } from 'react';
 import { StyleSheet, View, ScrollView } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useSelector, useDispatch } from 'react-redux';
 import CustomHeader from '../../components/CustomHeader';
+import CustomInput from '../../components/CustomInput';
+import FilterButton from '../../components/FilterButton';
 import ProductGroup from '../../components/ProductGroup';
 
-import * as propertyAction from '../../redux/actions/propertyAction';
+import { spaces } from '../../style/variables';
 import { HOME_SALE_ITEM, majorCities, RENTS } from '../../utils/constants';
 
 const RentScreen = ({ navigation }) => {
-  const dispatch = useDispatch();
-
   const { featuredPropertiesRents, newRentsProperties } = useSelector(
     (state) => state.properties,
   );
@@ -21,13 +22,19 @@ const RentScreen = ({ navigation }) => {
     ? newRentsProperties.new_listing.data
     : [];
 
-  useEffect(() => {
-    dispatch(propertyAction.getFeaturedPropertiesRents());
-  }, [dispatch]);
-
   return (
     <View style={styles.container}>
       <CustomHeader title="Rent" />
+      <View style={styles.searchArea}>
+        <CustomInput
+          containerStyle={{ flex: 1, marginRight: 10 }}
+          type="search"
+          placeholder="Search property"
+        />
+        <TouchableOpacity onPress={() => navigation.navigate('Filter')}>
+          <FilterButton />
+        </TouchableOpacity>
+      </View>
       <ScrollView>
         <ProductGroup
           data={featuredItems}
@@ -51,7 +58,7 @@ const RentScreen = ({ navigation }) => {
           title="New listing for rent"
           actionButton={{
             text: 'View All',
-            onPress: () => {},
+            onPress: () => navigation.navigate('RentListing'),
           }}
         />
 
@@ -77,6 +84,11 @@ const RentScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  searchArea: {
+    paddingHorizontal: spaces.appSpacing01,
+    marginTop: 10,
+    flexDirection: 'row',
   },
 });
 
