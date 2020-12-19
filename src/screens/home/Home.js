@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, View, ScrollView, Button } from 'react-native';
+import { StyleSheet, View, ScrollView, ActivityIndicator } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 
 import CustomHeader from '../../components/CustomHeader';
@@ -26,6 +26,17 @@ const HomeScreen = ({ navigation }) => {
     await dispatch(profileAction.getMyProfile());
   };
 
+  const loadProperties = async () => {
+    return await Promise.all([
+      dispatch(statesAction.getNigeriaStates()),
+      dispatch(propertyAction.getFeaturedProperties()),
+      dispatch(propertyAction.getNewSalesProperties()),
+      dispatch(propertyAction.getNewRentsProperties()),
+      dispatch(propertyAction.getFeaturedPropertiesSales()),
+      dispatch(propertyAction.getFeaturedPropertiesRents()),
+    ]);
+  };
+
   const {
     featuredProperties,
     newSalesProperties,
@@ -44,10 +55,7 @@ const HomeScreen = ({ navigation }) => {
 
   useEffect(() => {
     loadProfile();
-    dispatch(statesAction.getNigeriaStates());
-    dispatch(propertyAction.getFeaturedProperties());
-    dispatch(propertyAction.getNewSalesProperties());
-    dispatch(propertyAction.getNewRentsProperties());
+    loadProperties();
   }, [dispatch]);
 
   return (
@@ -72,7 +80,7 @@ const HomeScreen = ({ navigation }) => {
           title="Featured property"
           actionButton={{
             text: 'View All',
-            onPress: () => {},
+            onPress: () => navigation.navigate('Featured', { type: 'Buy' }),
           }}
         />
         <ProductGroup

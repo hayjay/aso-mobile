@@ -1,5 +1,5 @@
 import React from 'react';
-import { Pressable, StyleSheet } from 'react-native';
+import { Pressable, StyleSheet, Platform } from 'react-native';
 import CustomIcon from '../CustomIcon';
 
 const FilterButton = ({ onPress }) => {
@@ -14,8 +14,8 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: '#5e6b72',
     borderRadius: 8,
-    width: 47,
-    height: 47,
+    width: Platform.OS === 'ios' ? 38 : 45,
+    height: Platform.OS === 'ios' ? 38 : 45,
     justifyContent: 'center',
     alignItems: 'center',
   },

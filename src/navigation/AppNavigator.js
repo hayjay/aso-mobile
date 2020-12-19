@@ -25,6 +25,8 @@ import EditProfile from '../screens/MyProfile/EditProfile';
 import PaymentOption from '../screens/PaymentOption';
 import Affordability from '../screens/Affordability';
 import AddProperty from '../screens/AddProperty';
+import BuyListingScreen from '../screens/home/BuyListingScreen';
+import RentListingScreen from '../screens/home/RentListingScreen';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -32,7 +34,7 @@ const Drawer = createDrawerNavigator();
 const MainNavigator = () => {
   return (
     <Stack.Navigator
-      initialRouteName="AddProperty"
+      // initialRouteName="AddProperty"
       screenOptions={{
         headerShown: false,
         cardStyle: { backgroundColor: '#fff' },
@@ -58,6 +60,8 @@ const MainNavigator = () => {
       <Stack.Screen name="PaymentOption" component={PaymentOption} />
       <Stack.Screen name="Affordability" component={Affordability} />
       <Stack.Screen name="AddProperty" component={AddProperty} />
+      <Stack.Screen name="BuyListing" component={BuyListingScreen} />
+      <Stack.Screen name="RentListing" component={RentListingScreen} />
     </Stack.Navigator>
   );
 };

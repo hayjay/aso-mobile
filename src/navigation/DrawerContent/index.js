@@ -1,7 +1,8 @@
 import React from 'react';
 import { DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
-import { Pressable, StyleSheet, View } from 'react-native';
+import { Pressable, StyleSheet, View, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { colors, spaces } from '../../style/variables';
 import CustomText from '../../components/CustomText';
@@ -59,6 +60,15 @@ const CustomDrawerContent = (props) => {
       focused: false,
       onPress: () => props.navigation.navigate(''),
     },
+    {
+      label: 'Logout',
+      focused: false,
+      onPress: async () => {
+        await AsyncStorage.setItem('access_token', '');
+        await AsyncStorage.setItem('user_info', '');
+        props.navigation.navigate('Login');
+      },
+    },
   ];
 
   return (
@@ -74,18 +84,20 @@ const CustomDrawerContent = (props) => {
         </Pressable>
       </View>
       {drawerItems.map((item) => (
-        <DrawerItem
-          key={item.label}
-          focused={item.focused}
-          activeTintColor="#FFFFFF"
-          inactiveTintColor="#cecece"
-          activeBackgroundColor="#3F3F3F"
-          inactiveBackgroundColor="#3C3B3B"
-          labelStyle={styles.label}
-          style={[styles.item, item.focused && styles.activeItem]}
-          label={item.label}
-          onPress={item.onPress}
-        />
+        <ScrollView>
+          <DrawerItem
+            key={item.label}
+            focused={item.focused}
+            activeTintColor="#FFFFFF"
+            inactiveTintColor="#cecece"
+            activeBackgroundColor="#3F3F3F"
+            inactiveBackgroundColor="#3C3B3B"
+            labelStyle={styles.label}
+            style={[styles.item, item.focused && styles.activeItem]}
+            label={item.label}
+            onPress={item.onPress}
+          />
+        </ScrollView>
       ))}
     </DrawerContentScrollView>
   );
