@@ -75,6 +75,9 @@ const HomeScreen = ({ navigation }) => {
         <ProductGroup
           data={featuredItems}
           navigation={navigation}
+          onItemPress={(product) =>
+            navigation.navigate('ProductDetails', { product })
+          }
           itemWidth={330}
           horizontal
           title="Featured property"

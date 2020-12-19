@@ -28,7 +28,7 @@ const CustomDrawerContent = (props) => {
     {
       label: 'Sell',
       focused: false,
-      onPress: () => props.navigation.navigate('Sell'),
+      onPress: () => props.navigation.navigate('AddProperty'),
     },
     {
       label: 'Manage Finance',
