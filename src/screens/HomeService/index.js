@@ -38,6 +38,8 @@ const HomeService = ({ route, navigation }) => {
   );
   const [activeCategory, setActiveCategory] = React.useState('Departments');
   const [showSearchBar, setShowSearchBar] = React.useState(false);
+  const [searchQuery, setSearchQuery] = React.useState('');
+  const [isSearchEmpty, setIsSearchEmpty] = React.useState(false);
 
   const handlePress = (category) => {
     serviceCategoriesDispatch({
@@ -48,15 +50,32 @@ const HomeService = ({ route, navigation }) => {
     setActiveCategory(category.name);
   };
 
-  const handleSearchPress = () => {
-    // setShowSearchBar(true);
+  const handleChangeText = (value) => {
+    setSearchQuery(value);
+
+    if (value === '') {
+      setIsSearchEmpty(true);
+    } else {
+      setIsSearchEmpty(false);
+    }
   };
 
-  const handleChangeText = (e) => {};
+  const openSearchBar = () => {
+    setShowSearchBar(true);
+    setIsSearchEmpty(true);
+  };
 
-  const toggleSearchBar = () => {
-    console.log('SEARCH BAR CLICK');
-    setShowSearchBar(!showSearchBar);
+  const handleSearchPress = () => {
+    if (searchQuery === '') {
+      return;
+    }
+    console.log(searchQuery);
+  };
+
+  const handleCloseSearch = () => {
+    setSearchQuery('');
+    setShowSearchBar(false);
+    setIsSearchEmpty(false);
   };
 
   const handleDepartment = (dept) => {
@@ -72,60 +91,65 @@ const HomeService = ({ route, navigation }) => {
           headerRightContents={[
             {
               type: 'search',
-              onPress: toggleSearchBar,
+              onPress: showSearchBar ? handleSearchPress : openSearchBar,
             },
           ]}
           title="Home Service"
           searchBar={showSearchBar}
-          onCloseButtonPress={toggleSearchBar}
+          onCloseButtonPress={handleCloseSearch}
+          onSearchItemPress={() => navigation.navigate('Furnitures')}
           searchBarProps={{
             placeholder: 'Search',
             onChangeText: handleChangeText,
+            value: searchQuery,
+            isSearchEmpty,
           }}
         />
-        <ScrollView
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          style={{ marginTop: 20, marginLeft: 20 }}>
-          {serviceCategories.map((category, index) => (
-            <View style={styles.scrollWrapper} key={index}>
-              <TouchableOpacity onPress={() => handlePress(category)}>
-                <ServiceCategoryCard
-                  name={category.name}
-                  selected={category.selected}
+        {!showSearchBar && (
+          <View>
+            <ScrollView
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              style={{ marginTop: 20, marginLeft: 20 }}>
+              {serviceCategories.map((category, index) => (
+                <View style={styles.scrollWrapper} key={index}>
+                  <TouchableOpacity onPress={() => handlePress(category)}>
+                    <ServiceCategoryCard
+                      name={category.name}
+                      selected={category.selected}
+                    />
+                  </TouchableOpacity>
+                </View>
+              ))}
+            </ScrollView>
+
+            <View style={styles.heading}>
+              <Text>42 {activeCategory}</Text>
+              <View style={styles.sort}>
+                <Text style={styles.text}>Sort by</Text>
+                <Ionicons
+                  name="md-arrow-dropdown"
+                  size={24}
+                  color="rgba(19, 21, 22, 0.5)"
                 />
-              </TouchableOpacity>
+              </View>
             </View>
-          ))}
-        </ScrollView>
 
-        <View style={styles.heading}>
-          <Text>42 {activeCategory}</Text>
-          <View style={styles.sort}>
-            <Text style={styles.text}>Sort by</Text>
-            <Ionicons
-              name="md-arrow-dropdown"
-              size={24}
-              color="rgba(19, 21, 22, 0.5)"
-            />
+            {activeCategory === 'Departments' && (
+              <Departments handleDepartment={handleDepartment} />
+            )}
+            {activeCategory === 'Vendors' && <Vendors />}
+            {activeCategory === 'Professionals' && (
+              <Professionals
+                handleProfessionalPress={() =>
+                  navigation.navigate('AllProfessionals')
+                }
+              />
+            )}
+            {activeCategory === 'Agents' && <Agents />}
+            {activeCategory === 'Lawyers' && <Lawyers />}
           </View>
-        </View>
-
-        <View>
-          {activeCategory === 'Departments' && (
-            <Departments handleDepartment={handleDepartment} />
-          )}
-          {activeCategory === 'Vendors' && <Vendors />}
-          {activeCategory === 'Professionals' && (
-            <Professionals
-              handleProfessionalPress={() =>
-                navigation.navigate('AllProfessionals')
-              }
-            />
-          )}
-          {activeCategory === 'Agents' && <Agents />}
-          {activeCategory === 'Lawyers' && <Lawyers />}
-        </View>
+        )}
       </View>
     </ScrollView>
   );

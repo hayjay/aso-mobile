@@ -1,12 +1,12 @@
 import React from 'react';
-import { StyleSheet, Pressable } from 'react-native';
+import { View, StyleSheet, Pressable } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-const SearchButton = ({ containerStyle, iconStyle }) => {
+const SearchButton = ({ containerStyle, iconStyle, onPress }) => {
   return (
-    <Pressable style={[styles.container, containerStyle]}>
+    <View style={[styles.container, containerStyle]}>
       <Ionicons style={[styles.icon, iconStyle]} name="md-search" />
-    </Pressable>
+    </View>
   );
 };
 

@@ -165,7 +165,7 @@ const styles = StyleSheet.create({
     width: 160,
     height: 150,
     marginBottom: 18,
-    marginLeft: 10,
+    marginRight: 15,
     overflow: 'hidden',
 
     shadowColor: '#000',
