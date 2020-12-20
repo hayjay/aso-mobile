@@ -24,17 +24,11 @@ export const getNewPropertiesAPI = async (type) => {
 };
 
 export const searchPropertiesAPI = async (data) => {
-  const {
-    transaction_type,
-    per_page,
-    property_type_id,
-    city_id,
-    min_price,
-  } = data;
+  const { transaction_type } = data;
 
   try {
     const result = await requestInstance.get(
-      `/api/vst/params/searchProperties?transaction_type=${transaction_type}&per_page=${per_page}&property_type_id=${property_type_id}&city_id=${city_id}&min_price=${min_price}`,
+      `/api/vst/params/searchProperties?transaction_type=${transaction_type}`,
     );
     return result.data;
   } catch (err) {
