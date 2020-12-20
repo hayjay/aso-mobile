@@ -7,7 +7,7 @@ import {
   View,
   TouchableOpacity,
 } from 'react-native';
-
+import { useDispatch } from 'react-redux';
 import { spaces } from '../../style/variables';
 import { Ionicons } from '@expo/vector-icons';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview';
@@ -17,9 +17,9 @@ import Toast from 'react-native-toast-message';
 import Button from '../../components/Button';
 import CustomInput from '../../components/CustomInput';
 import CustomText from '../../components/CustomText';
-
 import TypeSelector from '../../components/TypeSelector';
 import CustomFilterHeader from '../../components/CustomFilterHeader';
+import * as filterAction from '../../redux/actions/propertyAction';
 
 function propertyTypeReducer(state, { type, payload }) {
   switch (type) {
@@ -44,6 +44,8 @@ const propertyTypes = [
 ];
 
 const Filter = ({ navigation }) => {
+  const dispatch = useDispatch();
+
   const [selectedBedroom, setSelectedBedroom] = useState({
     value: '1 bedroom - 2 bedrooms',
   });
@@ -76,15 +78,18 @@ const Filter = ({ navigation }) => {
   ]);
 
   const bedroomOptions = [
-    { value: '1 bedroom - 2 bedrooms', label: '1 bedroom - 2 bedrooms' },
-    { value: '2 bedroom - 3 bedrooms', label: '2 bedroom - 3 bedrooms' },
-    { value: '3 bedroom - 4 bedrooms', label: '3 bedroom - 4 bedrooms' },
+    { label: '1 bedroom', value: '1' },
+    { label: '2 bedrooms', value: '2' },
+    { label: '3 bedrooms ', value: '3' },
+    { label: '5 bedrooms ', value: '4' },
+    { label: '5 bedrooms ', value: '5' },
   ];
 
   const bathroomOptions = [
     { label: '1 bathroom', value: '1' },
     { label: '2 bathrooms', value: '2' },
     { label: '3 bathrooms ', value: '3' },
+    { label: '5 bathrooms ', value: '4' },
     { label: '5 bathrooms ', value: '5' },
   ];
 
@@ -92,6 +97,7 @@ const Filter = ({ navigation }) => {
     { label: '1 toilet', value: 1 },
     { label: '2 toilets', value: 2 },
     { label: '3 toilets', value: 3 },
+    { label: '3 toilets', value: 4 },
     { label: '5 toilets', value: 5 },
   ];
 
@@ -102,10 +108,10 @@ const Filter = ({ navigation }) => {
   ];
 
   const priceRanges = [
-    { label: 'Below N100,000', value: '0-100' },
-    { label: 'N100,000 - N250,000', value: '100-250' },
-    { label: 'N250,000 - N500,000', value: '250-500' },
-    { label: 'N500,000 - N1,000,000', value: '500-1000' },
+    { label: 'Below N100,000', value: '0' },
+    { label: 'N100,000 - N250,000', value: '100000' },
+    { label: 'N250,000 - N500,000', value: '250000' },
+    { label: 'N500,000 - N1,000,000', value: '500000' },
     { label: 'Custom', value: 'custom' },
   ];
 
@@ -128,7 +134,7 @@ const Filter = ({ navigation }) => {
     });
   };
 
-  const handleSearchClick = () => {
+  const handleSearchClick = async () => {
     if (
       selectedPriceRange.value === 'custom' &&
       (customPrice.minPrice === '' || customPrice.maxPrice === '')
@@ -161,16 +167,36 @@ const Filter = ({ navigation }) => {
     }
 
     // these are the values you get when the user clicks search
-    const formValues = {
-      category,
-      priceRange,
-      propertyType,
-      selectedBathroom,
-      customPrice,
-      selectedBedroom,
-      selectedToilet,
-      selectedParkingSpace,
+    // const formValues = {
+    //   category,
+    //   priceRange,
+    //   propertyType,
+    //   selectedBathroom,
+    //   customPrice,
+    //   selectedBedroom,
+    //   selectedToilet,
+    //   selectedParkingSpace,
+    // };
+
+    const filterData = {
+      transaction_type: category,
+      per_page: 10,
+      no_bedroom: parseInt(selectedBedroom.value, 10),
+      max_price: customPrice.maxPrice
+        ? parseInt(customPrice.maxPrice, 10)
+        : parseInt(priceRange.value, 10) + 100000,
+      min_price: customPrice.minPrice
+        ? parseInt(customPrice.minPrice, 10)
+        : parseInt(priceRange.value, 10),
+      no_bathroom: parseInt(selectedBathroom.value, 10),
     };
+
+    const results = await dispatch(filterAction.filterProperties(filterData));
+    navigation.navigate('SearchResults', {
+      searchResults: results,
+      type: category,
+      total: results.properties.meta.total,
+    });
   };
 
   return (
@@ -265,7 +291,7 @@ const Filter = ({ navigation }) => {
               <DropDownPicker
                 items={bedroomOptions}
                 placeholder="Bedroom"
-                defaultValue="1 bedroom - 2 bedrooms"
+                defaultValue="1"
                 itemStyle={{
                   justifyContent: 'flex-start',
                 }}

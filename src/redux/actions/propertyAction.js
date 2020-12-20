@@ -116,6 +116,8 @@ export const searchProperties = (searchData) => async (dispatch) => {
     type: SEARCH_RESULTS_SUCCESS,
     payload: result,
   });
+
+  return result;
 };
 
 export const filterProperties = (filterData) => async (dispatch) => {
@@ -132,4 +134,6 @@ export const filterProperties = (filterData) => async (dispatch) => {
     type: FILTER_RESULTS_SUCCESS,
     payload: result,
   });
+
+  return result;
 };

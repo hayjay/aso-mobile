@@ -7,6 +7,8 @@ import ProductGroup from '../../components/ProductGroup';
 import * as statesAction from '../../redux/actions/statesAction';
 import * as propertyAction from '../../redux/actions/propertyAction';
 import * as profileAction from '../../redux/actions/profileAction';
+import * as searchAction from '../../redux/actions/propertyAction';
+
 import {
   HOME_RENT_ITEM,
   HOME_SALE_ITEM,
@@ -20,7 +22,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const HomeScreen = ({ navigation }) => {
   const dispatch = useDispatch();
-  const [isFilterVisible, setIsFilterVisible] = useState(false);
+  const [searchData, setSearchData] = useState('');
 
   const loadProfile = async () => {
     await dispatch(profileAction.getMyProfile());
@@ -58,6 +60,20 @@ const HomeScreen = ({ navigation }) => {
     loadProperties();
   }, [dispatch]);
 
+  const search = async () => {
+    const searchValues = {
+      searchData,
+      transaction_type: 'Buy',
+    };
+    const results = await dispatch(searchAction.searchProperties(searchValues));
+
+    navigation.navigate('SearchResults', {
+      searchResults: results,
+      type: 'Buy',
+      total: results.properties.meta.total,
+    });
+  };
+
   return (
     <View style={styles.container}>
       <CustomHeader headerLeft="menu" title="Home" />
@@ -66,6 +82,11 @@ const HomeScreen = ({ navigation }) => {
           containerStyle={{ flex: 1, marginRight: 10 }}
           type="search"
           placeholder="Search property"
+          value={searchData}
+          onChangeText={(text) => setSearchData(text)}
+          onSubmitEditing={search}
+          autoCapitalize="none"
+          autoCorrect={false}
         />
         <TouchableOpacity onPress={() => navigation.navigate('Filter')}>
           <FilterButton />
