@@ -84,9 +84,11 @@ export const confirmAccount = (otp) => async (dispatch) => {
 
 export const resetPasswordCommit = (email, token) => async (dispatch) => {
   const result = await passwordResetCommitAPI({ email, token });
-  setAuthToken(result.token.access_token);
-  await AsyncStorage.setItem('access_token', result.token.access_token);
-  await AsyncStorage.setItem('user_info', JSON.stringify(result.userInfo));
+  if (result && result.token) {
+    setAuthToken(result.token.access_token);
+    await AsyncStorage.setItem('access_token', result.token.access_token);
+    await AsyncStorage.setItem('user_info', JSON.stringify(result.userInfo));
+  }
 
   return result;
 };

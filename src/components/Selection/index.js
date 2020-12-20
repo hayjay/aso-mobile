@@ -23,7 +23,13 @@ const Selection = ({
   };
 
   return (
-    <Pressable onPress={onPress} style={[styles.container, containerStyle]}>
+    <Pressable
+      onPress={onPress}
+      style={({ pressed }) => [
+        styles.container,
+        containerStyle,
+        { opacity: pressed ? 0.7 : 1 },
+      ]}>
       <MaterialCommunityIcons
         name={iconNames[type][marked]}
         size={26}

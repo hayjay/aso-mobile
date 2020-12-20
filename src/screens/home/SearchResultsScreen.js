@@ -8,23 +8,8 @@ import FilterButton from '../../components/FilterButton';
 import ProductGroup from '../../components/ProductGroup';
 import { spaces } from '../../style/variables';
 
-const FeaturedScreen = ({ route, navigation }) => {
-  const { type } = route.params;
-
-  let featuredCategory;
-  if (type === 'Buy') {
-    featuredCategory = useSelector(
-      (state) => state.properties.featuredPropertiesSales,
-    );
-  } else {
-    featuredCategory = useSelector(
-      (state) => state.properties.featuredPropertiesRents,
-    );
-  }
-
-  const featuredItems = featuredCategory.featured_properties
-    ? featuredCategory.featured_properties.data
-    : [];
+const SearchResultsScreen = ({ route, navigation }) => {
+  const { type, searchResults, total } = route.params;
 
   return (
     <View style={styles.container}>
@@ -39,20 +24,20 @@ const FeaturedScreen = ({ route, navigation }) => {
           <FilterButton />
         </TouchableOpacity>
       </View>
-      <ProductGroup
-        data={featuredItems}
-        navigation={navigation}
-        onItemPress={(product) =>
-          navigation.navigate('ProductDetails', { product })
-        }
-        itemWidth={370}
-        title={
-          type === 'Buy'
-            ? 'Featured property for sale'
-            : 'Featured property for rent'
-        }
-        horizontal={false}
-      />
+      {searchResults && searchResults.properties ? (
+        <ProductGroup
+          data={searchResults.properties.data}
+          navigation={navigation}
+          onItemPress={(product) =>
+            navigation.navigate('ProductDetails', { product })
+          }
+          itemWidth={370}
+          title={total ? total + ' Results found!' : '0 Results found!'}
+          horizontal={false}
+        />
+      ) : (
+        <Text>No Search Results!</Text>
+      )}
     </View>
   );
 };
@@ -68,4 +53,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default FeaturedScreen;
+export default SearchResultsScreen;

@@ -9,6 +9,10 @@ import {
   GET_FEATURED_PROPERTIES_SALES_FAILED,
   GET_FEATURED_PROPERTIES_RENTS_SUCCESS,
   GET_FEATURED_PROPERTIES_RENTS_FAILED,
+  SEARCH_RESULTS_SUCCESS,
+  SEARCH_RESULTS_FAILED,
+  FILTER_RESULTS_SUCCESS,
+  FILTER_RESULTS_FAILED,
 } from '../types';
 
 const initialState = {
@@ -18,6 +22,8 @@ const initialState = {
   newSalesProperties: [],
   newRentsProperties: [],
   errors: {},
+  searchResults: [],
+  filteredResults: [],
 };
 
 export default function (state = initialState, action) {
@@ -73,6 +79,30 @@ export default function (state = initialState, action) {
         errors: {},
       };
     case GET_NEW_RENTS_PROPERTIES_FAILED:
+      return {
+        ...state,
+        errors: true,
+      };
+
+    case SEARCH_RESULTS_SUCCESS:
+      return {
+        ...state,
+        searchResults: action.payload,
+        errors: {},
+      };
+    case SEARCH_RESULTS_FAILED:
+      return {
+        ...state,
+        errors: true,
+      };
+
+    case FILTER_RESULTS_SUCCESS:
+      return {
+        ...state,
+        filteredResults: action.payload,
+        errors: {},
+      };
+    case FILTER_RESULTS_FAILED:
       return {
         ...state,
         errors: true,

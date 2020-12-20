@@ -1,6 +1,8 @@
 import {
+  filterPropertiesAPI,
   getFeaturedPropertiesAPI,
   getNewPropertiesAPI,
+  searchPropertiesAPI,
 } from '../../api/property';
 import { RENTS, SALES } from '../../utils/constants';
 import {
@@ -14,6 +16,10 @@ import {
   GET_FEATURED_PROPERTIES_SALES_FAILED,
   GET_FEATURED_PROPERTIES_RENTS_SUCCESS,
   GET_FEATURED_PROPERTIES_RENTS_FAILED,
+  SEARCH_RESULTS_FAILED,
+  SEARCH_RESULTS_SUCCESS,
+  FILTER_RESULTS_FAILED,
+  FILTER_RESULTS_SUCCESS,
 } from '../types';
 
 export const getFeaturedProperties = () => async (dispatch) => {
@@ -94,4 +100,40 @@ export const getNewRentsProperties = () => async (dispatch) => {
     type: GET_NEW_RENTS_PROPERTIES_SUCCESS,
     payload: result,
   });
+};
+
+export const searchProperties = (searchData) => async (dispatch) => {
+  const result = await searchPropertiesAPI(searchData);
+
+  if (result.error) {
+    dispatch({
+      type: SEARCH_RESULTS_FAILED,
+    });
+    return result;
+  }
+
+  dispatch({
+    type: SEARCH_RESULTS_SUCCESS,
+    payload: result,
+  });
+
+  return result;
+};
+
+export const filterProperties = (filterData) => async (dispatch) => {
+  const result = await filterPropertiesAPI(filterData);
+
+  if (result.error) {
+    dispatch({
+      type: FILTER_RESULTS_FAILED,
+    });
+    return result;
+  }
+
+  dispatch({
+    type: FILTER_RESULTS_SUCCESS,
+    payload: result,
+  });
+
+  return result;
 };

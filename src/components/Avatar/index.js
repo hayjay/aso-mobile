@@ -2,12 +2,12 @@ import React from 'react';
 import { Image, StyleSheet, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-const Avatar = ({ imageUrl, size = 90 }) => {
+const Avatar = ({ imageUrl, size = 90, borderWidth = 2 }) => {
   return (
     <View
       style={[
         styles.container,
-        { width: size, height: size, borderRadius: size / 2 },
+        { width: size, height: size, borderRadius: size / 2, borderWidth },
       ]}>
       {imageUrl ? (
         <Image style={styles.image} source={{ uri: imageUrl }} />
@@ -24,7 +24,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderColor: '#fff',
-    borderWidth: 2,
     overflow: 'hidden',
   },
   image: {

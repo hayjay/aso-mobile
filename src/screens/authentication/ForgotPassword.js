@@ -207,6 +207,7 @@ const ForgotPassword = ({ navigation }) => {
                       formThreeProps.touched.password &&
                       formThreeProps.errors.password
                     }
+                    toggleVisibility
                   />
                   <CustomInput
                     containerStyle={styles.inputSpacing}
@@ -222,6 +223,7 @@ const ForgotPassword = ({ navigation }) => {
                       formThreeProps.touched.password_confirmation &&
                       formThreeProps.errors.password_confirmation
                     }
+                    toggleVisibility
                   />
                   <Button
                     onPress={formThreeProps.handleSubmit}

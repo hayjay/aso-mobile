@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Image, View } from 'react-native';
-
+import { useDispatch, useSelector } from 'react-redux';
 import Accordion from '../../components/Accordion';
 import CustomHeader from '../../components/CustomHeader';
 import CustomText from '../../components/CustomText';
 import PlusButton from '../../components/PlusButton';
 import styles from './styles';
+import * as profileActions from '../../redux/actions/profileAction';
 
 const Profile = ({ navigation }) => {
   const imageSource = {
@@ -32,9 +33,16 @@ const Profile = ({ navigation }) => {
     {
       id: 4,
       title: 'My Profile',
-      onPress: () => navigation.navigate('Home'),
+      onPress: () => navigation.navigate('MyProfile'),
     },
   ];
+
+  const dispatch = useDispatch();
+  const { userInfo } = useSelector((state) => state.profile.myProfile);
+
+  useEffect(() => {
+    dispatch(profileActions.getMyProfile());
+  }, [dispatch]);
 
   const headerRightContents = [
     {
@@ -48,7 +56,9 @@ const Profile = ({ navigation }) => {
       <CustomHeader title="Profile" headerRightContents={headerRightContents} />
       <View>
         <View style={styles.headTop}>
-          <CustomText style={styles.name}>Adebola Williams</CustomText>
+          <CustomText style={styles.name}>
+            {userInfo.firstName + ' ' + userInfo.lastName}
+          </CustomText>
         </View>
         <View style={styles.titleArea}>
           <CustomText style={styles.profileTitle}>Real Estate Agent</CustomText>

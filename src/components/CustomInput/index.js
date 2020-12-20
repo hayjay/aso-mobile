@@ -12,10 +12,11 @@ const CustomInput = ({
   toggleVisibility,
   type,
   width,
+  label,
   ...inputProps
 }) => {
   const [secureTextEntry, setSecureTextEntry] = useState(
-    toggleVisibility || secureTextEntry,
+    toggleVisibility || inputProps.secureTextEntry,
   );
 
   const iconLeft = type === 'search' && (
@@ -28,17 +29,27 @@ const CustomInput = ({
       borderColor: '#ccc',
       paddingLeft: 10,
     },
+    textArea: {
+      borderWidth: 1,
+      borderRadius: 6,
+      borderColor: '#ccc',
+      paddingLeft: 10,
+      minHeight: 80,
+      alignItems: 'flex-start',
+    },
   };
   const typeStyle = typeToStyles[type] || {};
 
   return (
     <View style={[containerStyle, { width }]}>
+      {label && <CustomText style={styles.label}>{label}</CustomText>}
       <View style={[styles.inputContainer, typeStyle]}>
         {iconLeft}
         <TextInput
           placeholderTextColor="#aaa"
           value={value}
           style={styles.input}
+          multiline={type === 'textArea'}
           {...inputProps}
           secureTextEntry={secureTextEntry}
         />

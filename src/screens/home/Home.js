@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, View, ScrollView, Button } from 'react-native';
+import { StyleSheet, View, ScrollView, ActivityIndicator } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 
 import CustomHeader from '../../components/CustomHeader';
@@ -7,6 +7,8 @@ import ProductGroup from '../../components/ProductGroup';
 import * as statesAction from '../../redux/actions/statesAction';
 import * as propertyAction from '../../redux/actions/propertyAction';
 import * as profileAction from '../../redux/actions/profileAction';
+import * as searchAction from '../../redux/actions/propertyAction';
+
 import {
   HOME_RENT_ITEM,
   HOME_SALE_ITEM,
@@ -20,10 +22,21 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const HomeScreen = ({ navigation }) => {
   const dispatch = useDispatch();
-  const [isFilterVisible, setIsFilterVisible] = useState(false);
+  const [searchData, setSearchData] = useState('');
 
   const loadProfile = async () => {
     await dispatch(profileAction.getMyProfile());
+  };
+
+  const loadProperties = async () => {
+    return await Promise.all([
+      dispatch(statesAction.getNigeriaStates()),
+      dispatch(propertyAction.getFeaturedProperties()),
+      dispatch(propertyAction.getNewSalesProperties()),
+      dispatch(propertyAction.getNewRentsProperties()),
+      dispatch(propertyAction.getFeaturedPropertiesSales()),
+      dispatch(propertyAction.getFeaturedPropertiesRents()),
+    ]);
   };
 
   const {
@@ -44,11 +57,22 @@ const HomeScreen = ({ navigation }) => {
 
   useEffect(() => {
     loadProfile();
-    dispatch(statesAction.getNigeriaStates());
-    dispatch(propertyAction.getFeaturedProperties());
-    dispatch(propertyAction.getNewSalesProperties());
-    dispatch(propertyAction.getNewRentsProperties());
+    loadProperties();
   }, [dispatch]);
+
+  const search = async () => {
+    const searchValues = {
+      searchData,
+      transaction_type: 'Buy',
+    };
+    const results = await dispatch(searchAction.searchProperties(searchValues));
+
+    navigation.navigate('SearchResults', {
+      searchResults: results,
+      type: 'Buy',
+      total: results.properties.meta.total,
+    });
+  };
 
   return (
     <View style={styles.container}>
@@ -58,6 +82,11 @@ const HomeScreen = ({ navigation }) => {
           containerStyle={{ flex: 1, marginRight: 10 }}
           type="search"
           placeholder="Search property"
+          value={searchData}
+          onChangeText={(text) => setSearchData(text)}
+          onSubmitEditing={search}
+          autoCapitalize="none"
+          autoCorrect={false}
         />
         <TouchableOpacity onPress={() => navigation.navigate('Filter')}>
           <FilterButton />
@@ -67,12 +96,15 @@ const HomeScreen = ({ navigation }) => {
         <ProductGroup
           data={featuredItems}
           navigation={navigation}
+          onItemPress={(product) =>
+            navigation.navigate('ProductDetails', { product })
+          }
           itemWidth={330}
           horizontal
           title="Featured property"
           actionButton={{
             text: 'View All',
-            onPress: () => {},
+            onPress: () => navigation.navigate('Featured', { type: 'Buy' }),
           }}
         />
         <ProductGroup
