@@ -55,3 +55,15 @@ export const filterPropertiesAPI = async (data) => {
     return handleError(err);
   }
 };
+
+export const addPropertyAPI = async (data) => {
+  try {
+    const result = await requestInstance.post(
+      `/api/vst/profile/submitListing`,
+      data,
+    );
+    return result.data;
+  } catch (err) {
+    return handleError(err);
+  }
+};

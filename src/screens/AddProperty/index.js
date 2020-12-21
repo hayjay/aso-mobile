@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { ScrollView, View } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import * as DocumentPicker from 'expo-document-picker';
+import { Form, Formik } from 'formik';
+import { useDispatch } from 'react-redux';
+import Toast from 'react-native-toast-message';
 
 import styles from './styles';
 import CustomHeader from '../../components/CustomHeader';
@@ -11,6 +14,7 @@ import Button from '../../components/Button';
 import UploadButton from '../../components/UploadButton';
 
 const AddProperty = () => {
+  const dispatch = useDispatch();
   const [purpose, setPurpose] = useState({});
   const [propertyType, setPropertyType] = useState({});
   const purposeOptions = [
@@ -36,117 +40,131 @@ const AddProperty = () => {
 
   const uploadDocument = async () => {
     const document = await DocumentPicker.getDocumentAsync();
+    console.log('document', document);
+    console.log('propertyType', propertyType);
+    console.log('purpose', purpose);
   };
+
+  const processAddProperty = async (values) => {};
 
   return (
     <>
       <CustomHeader title="Add Property" />
       <ScrollView>
-        <View style={styles.body}>
-          <SelectionGroup
-            selected={purpose.value}
-            onSelect={setPurpose}
-            options={purposeOptions}
-          />
-          <View style={styles.halfInputsContainer}>
-            <DropDownPicker
-              items={propertyTypeOptions}
-              placeholder="Property type"
-              defaultValue=""
-              containerStyle={styles.dropdownContainer}
-              itemStyle={{
-                justifyContent: 'flex-start',
-              }}
-              onChangeItem={(item) =>
-                setPropertyType({
-                  value: item.value,
-                })
-              }
-            />
-            <DropDownPicker
-              items={propertyTypeOptions}
-              placeholder="Property type"
-              defaultValue="land"
-              containerStyle={styles.dropdownContainer}
-              itemStyle={{
-                justifyContent: 'flex-start',
-              }}
-              onChangeItem={(item) =>
-                setPropertyType({
-                  value: item.value,
-                })
-              }
-            />
-            <DropDownPicker
-              items={propertyTypeOptions}
-              placeholder="Property type"
-              defaultValue="land"
-              containerStyle={styles.dropdownContainer}
-              itemStyle={{
-                justifyContent: 'flex-start',
-              }}
-              onChangeItem={(item) =>
-                setPropertyType({
-                  value: item.value,
-                })
-              }
-            />
-            <DropDownPicker
-              items={propertyTypeOptions}
-              placeholder="Property type"
-              defaultValue="land"
-              containerStyle={styles.dropdownContainer}
-              itemStyle={{
-                justifyContent: 'flex-start',
-              }}
-              onChangeItem={(item) =>
-                setPropertyType({
-                  value: item.value,
-                })
-              }
-            />
-            <CustomInput
-              containerStyle={styles.halfInput}
-              placeholder="Parking space"
-              width="48%"
-            />
-            <CustomInput
-              containerStyle={styles.halfInput}
-              placeholder="Square foot"
-              width="48%"
-            />
-            <CustomInput
-              containerStyle={styles.halfInput}
-              placeholder="Price range"
-              width="48%"
-            />
-            <CustomInput
-              containerStyle={styles.halfInput}
-              placeholder="Year built"
-              width="48%"
-            />
-          </View>
-          <CustomInput
-            containerStyle={styles.halfInput}
-            type="textArea"
-            label="Property address"
-          />
-          <CustomInput
-            containerStyle={styles.halfInput}
-            type="textArea"
-            label="Property description"
-          />
-          <CustomInput
-            containerStyle={styles.halfInput}
-            type="textArea"
-            label="Enter other amenities"
-          />
-          <UploadButton
-            onPress={uploadDocument}
-            label="Add property image and other documents"
-          />
-          <Button containerStyle={styles.actionButton} text="Sumbit Property" />
-        </View>
+        <Formik
+          initialValues={{}}
+          onSubmit={(values) => processAddProperty(values)}>
+          {(formProps) => (
+            <View style={styles.body}>
+              <SelectionGroup
+                selected={purpose.value}
+                onSelect={setPurpose}
+                options={purposeOptions}
+              />
+              <View style={styles.halfInputsContainer}>
+                <DropDownPicker
+                  items={propertyTypeOptions}
+                  placeholder="Property type"
+                  defaultValue=""
+                  containerStyle={styles.dropdownContainer}
+                  itemStyle={{
+                    justifyContent: 'flex-start',
+                  }}
+                  onChangeItem={(item) =>
+                    setPropertyType({
+                      value: item.value,
+                    })
+                  }
+                />
+                <DropDownPicker
+                  items={propertyTypeOptions}
+                  placeholder="Property type"
+                  defaultValue="land"
+                  containerStyle={styles.dropdownContainer}
+                  itemStyle={{
+                    justifyContent: 'flex-start',
+                  }}
+                  onChangeItem={(item) =>
+                    setPropertyType({
+                      value: item.value,
+                    })
+                  }
+                />
+                <DropDownPicker
+                  items={propertyTypeOptions}
+                  placeholder="Property type"
+                  defaultValue="land"
+                  containerStyle={styles.dropdownContainer}
+                  itemStyle={{
+                    justifyContent: 'flex-start',
+                  }}
+                  onChangeItem={(item) =>
+                    setPropertyType({
+                      value: item.value,
+                    })
+                  }
+                />
+                <DropDownPicker
+                  items={propertyTypeOptions}
+                  placeholder="Property type"
+                  defaultValue="land"
+                  containerStyle={styles.dropdownContainer}
+                  itemStyle={{
+                    justifyContent: 'flex-start',
+                  }}
+                  onChangeItem={(item) =>
+                    setPropertyType({
+                      value: item.value,
+                    })
+                  }
+                />
+                <CustomInput
+                  containerStyle={styles.halfInput}
+                  placeholder="Parking space"
+                  width="48%"
+                />
+                <CustomInput
+                  containerStyle={styles.halfInput}
+                  placeholder="Square foot"
+                  width="48%"
+                />
+                <CustomInput
+                  containerStyle={styles.halfInput}
+                  placeholder="Price range"
+                  width="48%"
+                />
+                <CustomInput
+                  containerStyle={styles.halfInput}
+                  placeholder="Year built"
+                  width="48%"
+                />
+              </View>
+              <CustomInput
+                containerStyle={styles.halfInput}
+                type="textArea"
+                label="Property address"
+              />
+              <CustomInput
+                containerStyle={styles.halfInput}
+                type="textArea"
+                label="Property description"
+              />
+              <CustomInput
+                containerStyle={styles.halfInput}
+                type="textArea"
+                label="Enter other amenities"
+              />
+              <UploadButton
+                onPress={uploadDocument}
+                label="Add property image and other documents"
+              />
+              <Button
+                containerStyle={styles.actionButton}
+                text="Sumbit Property"
+              />
+            </View>
+          )}
+        </Formik>
       </ScrollView>
     </>
   );

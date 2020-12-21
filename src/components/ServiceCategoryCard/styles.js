@@ -23,9 +23,10 @@ const styles = StyleSheet.create({
     fontWeight: '700',
   },
   underline: {
-    width: 10,
-    height: 2,
-    marginTop: 3,
+    width: 30,
+    height: 2.5,
+    marginTop: 4,
+    borderRadius: 15,
   },
 });
 

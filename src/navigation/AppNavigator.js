@@ -34,6 +34,7 @@ import AddProperty from '../screens/AddProperty';
 import BuyListingScreen from '../screens/home/BuyListingScreen';
 import RentListingScreen from '../screens/home/RentListingScreen';
 import SearchResultsScreen from '../screens/home/SearchResultsScreen';
+import PaymentView from '../screens/Payment/PaymentView';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -84,6 +85,7 @@ const MainNavigator = () => {
       <Stack.Screen name="BuyListing" component={BuyListingScreen} />
       <Stack.Screen name="RentListing" component={RentListingScreen} />
       <Stack.Screen name="SearchResults" component={SearchResultsScreen} />
+      <Stack.Screen name="PaymentView" component={PaymentView} />
     </Stack.Navigator>
   );
 };
