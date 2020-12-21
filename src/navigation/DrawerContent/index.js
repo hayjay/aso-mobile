@@ -83,8 +83,8 @@ const CustomDrawerContent = (props) => {
           <CustomText style={styles.actionText}>View Profile</CustomText>
         </Pressable>
       </View>
-      {drawerItems.map((item) => (
-        <ScrollView>
+      {drawerItems.map((item, index) => (
+        <ScrollView key={index}>
           <DrawerItem
             key={item.label}
             focused={item.focused}
