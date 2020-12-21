@@ -13,6 +13,8 @@ import {
   SEARCH_RESULTS_FAILED,
   FILTER_RESULTS_SUCCESS,
   FILTER_RESULTS_FAILED,
+  ADD_PROPERTY_SUCCESS,
+  ADD_PROPERTY_FAILED,
 } from '../types';
 
 const initialState = {
@@ -24,6 +26,7 @@ const initialState = {
   errors: {},
   searchResults: [],
   filteredResults: [],
+  addProperty: {},
 };
 
 export default function (state = initialState, action) {
@@ -103,6 +106,18 @@ export default function (state = initialState, action) {
         errors: {},
       };
     case FILTER_RESULTS_FAILED:
+      return {
+        ...state,
+        errors: true,
+      };
+
+    case ADD_PROPERTY_SUCCESS:
+      return {
+        ...state,
+        addProperty: action.payload,
+        errors: {},
+      };
+    case ADD_PROPERTY_FAILED:
       return {
         ...state,
         errors: true,

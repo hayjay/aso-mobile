@@ -2,6 +2,7 @@ import React from 'react';
 import { ImageBackground, Pressable, ScrollView, View } from 'react-native';
 import Swiper from 'react-native-swiper';
 import numberFomatter from 'number-formatter';
+import { useDispatch } from 'react-redux';
 
 import BackButton from '../../components/BackButton';
 import Button from '../../components/Button';
@@ -10,11 +11,27 @@ import CustomText from '../../components/CustomText';
 import { colors } from '../../style/variables';
 import styles from './styles';
 import TextButton from '../../components/TextButton';
+import * as paymentAction from '../../redux/actions/paymentAction';
 
-const ProductDetails = ({ route }) => {
+const ProductDetails = ({ route, navigation }) => {
   const product = route?.params?.product;
+  const dispatch = useDispatch();
 
   console.log('product', product);
+
+  const openPaymentPage = async () => {
+    const result = await dispatch(
+      paymentAction.initiatePayWithPayStack({
+        propertyID: product.propertyID,
+        amount: parseInt(product.total, 10),
+      }),
+    );
+    // console.log('result', result);
+    navigation.navigate('PaymentView', {
+      paymentUrl: result.paymentUrl,
+      reference: result.reference,
+    });
+  };
 
   const processImages = () => {
     const images = [product.primary_image_link];
@@ -132,7 +149,11 @@ const ProductDetails = ({ route }) => {
             <CustomText type="info-body">{payment_plan}</CustomText>
           </>
         )}
-        <Button text="Purchase Property" containerStyle={styles.actionButton} />
+        <Button
+          onPress={openPaymentPage}
+          text="Purchase Property"
+          containerStyle={styles.actionButton}
+        />
         <TextButton color={colors.red} text="View background property" />
       </View>
     </ScrollView>

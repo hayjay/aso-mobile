@@ -239,7 +239,7 @@ const Filter = ({ navigation }) => {
               ))}
             </View>
 
-            <View style={styles.dropdownView}>
+            <View style={{ zIndex: 10, marginTop: 24 }}>
               <CustomText type="info-title">Price Range</CustomText>
               {selectedPriceRange.value === 'custom' ? (
                 <View style={styles.priceRange}>
@@ -270,23 +270,26 @@ const Filter = ({ navigation }) => {
                   />
                 </View>
               ) : (
-                <DropDownPicker
-                  items={priceRanges}
-                  placeholder="Price Range"
-                  defaultValue={''}
-                  itemStyle={{
-                    justifyContent: 'flex-start',
-                  }}
-                  onChangeItem={(item) =>
-                    setSelectedPriceRange({
-                      value: item.value,
-                    })
-                  }
-                />
+                <View>
+                  <DropDownPicker
+                    items={priceRanges}
+                    placeholder="Price Range"
+                    defaultValue={''}
+                    zIndex={99}
+                    itemStyle={{
+                      justifyContent: 'flex-start',
+                    }}
+                    onChangeItem={(item) =>
+                      setSelectedPriceRange({
+                        value: item.value,
+                      })
+                    }
+                  />
+                </View>
               )}
             </View>
 
-            <View style={styles.dropdownView}>
+            <View style={{ zIndex: 9, marginTop: 24 }}>
               <CustomText type="info-title">Bedroom</CustomText>
               <DropDownPicker
                 items={bedroomOptions}
@@ -304,7 +307,7 @@ const Filter = ({ navigation }) => {
               />
             </View>
 
-            <View style={styles.dropdownView}>
+            <View style={{ zIndex: 9, marginTop: 24 }}>
               <CustomText type="info-title">Bathroom</CustomText>
               <DropDownPicker
                 items={bathroomOptions}
@@ -321,7 +324,7 @@ const Filter = ({ navigation }) => {
               />
             </View>
 
-            <View style={styles.dropdownView}>
+            <View style={{ zIndex: 9, marginTop: 24 }}>
               <CustomText type="info-title">Toilet</CustomText>
               <DropDownPicker
                 items={toiletsOptions}
@@ -337,7 +340,7 @@ const Filter = ({ navigation }) => {
                 }
               />
             </View>
-            <View style={styles.dropdownView}>
+            <View style={{ zIndex: 6, marginTop: 24, marginBottom: 20 }}>
               <CustomText type="info-title">Car Parking Space</CustomText>
               <DropDownPicker
                 items={parkingSpaceOptions}

@@ -1,4 +1,5 @@
 import {
+  addPropertyAPI,
   filterPropertiesAPI,
   getFeaturedPropertiesAPI,
   getNewPropertiesAPI,
@@ -20,6 +21,8 @@ import {
   SEARCH_RESULTS_SUCCESS,
   FILTER_RESULTS_FAILED,
   FILTER_RESULTS_SUCCESS,
+  ADD_PROPERTY_FAILED,
+  ADD_PROPERTY_SUCCESS,
 } from '../types';
 
 export const getFeaturedProperties = () => async (dispatch) => {
@@ -132,6 +135,24 @@ export const filterProperties = (filterData) => async (dispatch) => {
 
   dispatch({
     type: FILTER_RESULTS_SUCCESS,
+    payload: result,
+  });
+
+  return result;
+};
+
+export const addProperty = (propertyData) => async (dispatch) => {
+  const result = await addPropertyAPI(propertyData);
+
+  if (result.error) {
+    dispatch({
+      type: ADD_PROPERTY_FAILED,
+    });
+    return result;
+  }
+
+  dispatch({
+    type: ADD_PROPERTY_SUCCESS,
     payload: result,
   });
 
