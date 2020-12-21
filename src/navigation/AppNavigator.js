@@ -86,6 +86,7 @@ const MainNavigator = () => {
       <Stack.Screen name="RentListing" component={RentListingScreen} />
       <Stack.Screen name="SearchResults" component={SearchResultsScreen} />
       <Stack.Screen name="PaymentView" component={PaymentView} />
+      <Stack.Screen name="HomeService" component={HomeServiceScreen} />
     </Stack.Navigator>
   );
 };

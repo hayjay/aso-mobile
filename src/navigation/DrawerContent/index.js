@@ -38,7 +38,7 @@ const CustomDrawerContent = (props) => {
     {
       label: 'Home Services',
       focused: false,
-      onPress: () => props.navigation.navigate('AllProfessionals'),
+      onPress: () => props.navigation.navigate('HomeService'),
     },
     {
       label: 'Advertise',
