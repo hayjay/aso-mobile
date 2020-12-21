@@ -36,9 +36,10 @@ const BuyListingScreen = ({ navigation }) => {
           onItemPress={(product) =>
             navigation.navigate('ProductDetails', { product })
           }
-          itemWidth={170}
+          // itemWidth={'90%'}
           horizontal={false}
           title="All new listing for sale"
+          grid={true}
         />
       </ScrollView>
     </View>
