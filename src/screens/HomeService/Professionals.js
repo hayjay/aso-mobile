@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { View, StyleSheet, Image, Text, TouchableOpacity } from 'react-native';
-import professionalImage from '../../../assets/images/professionals.png';
+import professionalImage from '../../../assets/images/professional2.png';
 
 const Professionals = ({ handleProfessionalPress }) => {
   const [professionals, setProfessionals] = React.useState([
