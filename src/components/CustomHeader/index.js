@@ -119,6 +119,7 @@ const CustomHeader = ({
           )}
         </View>
       </View>
+
       {searchBarProps?.isSearchEmpty && (
         <View style={styles.emptySearchWrapper}>
           <View style={styles.emptySearch}>
@@ -128,6 +129,7 @@ const CustomHeader = ({
           </View>
         </View>
       )}
+
       {!!searchBarProps?.value && (
         <View style={styles.searchResultContainer}>
           <View style={styles.searchResult}>

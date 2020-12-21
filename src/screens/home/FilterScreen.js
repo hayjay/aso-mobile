@@ -294,7 +294,8 @@ const Filter = ({ navigation }) => {
               <DropDownPicker
                 items={bedroomOptions}
                 placeholder="Bedroom"
-                defaultValue="1"
+                defaultValue={bedroomOptions[0].value}
+                zIndex={99}
                 itemStyle={{
                   justifyContent: 'flex-start',
                 }}
@@ -307,12 +308,13 @@ const Filter = ({ navigation }) => {
               />
             </View>
 
-            <View style={{ zIndex: 9, marginTop: 24 }}>
+            <View style={{ zIndex: 8, marginTop: 24 }}>
               <CustomText type="info-title">Bathroom</CustomText>
               <DropDownPicker
                 items={bathroomOptions}
                 placeholder="Bathroom"
                 defaultValue={bathroomOptions[0].value}
+                zIndex={99}
                 itemStyle={{
                   justifyContent: 'flex-start',
                 }}
@@ -324,12 +326,13 @@ const Filter = ({ navigation }) => {
               />
             </View>
 
-            <View style={{ zIndex: 9, marginTop: 24 }}>
+            <View style={{ zIndex: 7, marginTop: 24 }}>
               <CustomText type="info-title">Toilet</CustomText>
               <DropDownPicker
                 items={toiletsOptions}
                 placeholder="Toilets"
                 defaultValue={toiletsOptions[0].value}
+                zIndex={99}
                 itemStyle={{
                   justifyContent: 'flex-start',
                 }}
@@ -346,6 +349,7 @@ const Filter = ({ navigation }) => {
                 items={parkingSpaceOptions}
                 placeholder="Car Parking Space"
                 defaultValue={parkingSpaceOptions[0].value}
+                zIndex={99}
                 itemStyle={{
                   justifyContent: 'flex-start',
                 }}
@@ -410,10 +414,6 @@ const styles = StyleSheet.create({
     paddingRight: 10,
     marginBottom: 10,
     marginTop: 10,
-  },
-  dropdownView: {
-    marginTop: 10,
-    marginBottom: 10,
   },
   scene: {
     flex: 1,
